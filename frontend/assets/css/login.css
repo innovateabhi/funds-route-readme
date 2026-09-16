@@ -1,0 +1,21 @@
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+
+/* Login-specific form spacing */
+
+.login-page .form-row {
+
+    margin-top:
+        1px;
+}
+
+
+/* Slightly more compact login form */
+
+.login-page .auth-submit {
+
+    margin-top:
+        2px;
+}

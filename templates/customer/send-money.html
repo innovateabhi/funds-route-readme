@@ -1,0 +1,1853 @@
+{% extends "customer/base-customer.html" %}
+
+{% block title %}
+Send Money | OIGR
+{% endblock %}
+
+{% block page_heading %}
+Send Money
+{% endblock %}
+
+{% block content %}
+
+<div class="send-money-page">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <section class="send-money-header">
+
+        <div>
+            <span class="page-kicker">
+                MONEY TRANSFER
+            </span>
+
+            <h2>
+                Send money securely
+            </h2>
+
+            <p>
+                Transfer money between India and Nepal using live exchange rates.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TRANSFER STEPS
+    ====================================================== -->
+
+    <div class="transfer-steps">
+
+        <div
+            class="transfer-step active"
+            id="transferStep1"
+            data-step="1"
+        >
+            <span class="step-number">
+                1
+            </span>
+
+            <span class="step-content">
+                <strong>
+                    Transfer Details
+                </strong>
+
+                <small>
+                    Enter amount
+                </small>
+            </span>
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div
+            class="transfer-step"
+            id="transferStep2"
+            data-step="2"
+        >
+            <span class="step-number">
+                2
+            </span>
+
+            <span class="step-content">
+                <strong>
+                    Review
+                </strong>
+
+                <small>
+                    Check details
+                </small>
+            </span>
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div
+            class="transfer-step"
+            id="transferStep3"
+            data-step="3"
+        >
+            <span class="step-number">
+                3
+            </span>
+
+            <span class="step-content">
+                <strong>
+                    Confirm
+                </strong>
+
+                <small>
+                    Confirm transfer
+                </small>
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STEP 1
+         TRANSFER DETAILS
+    ====================================================== -->
+
+    <section
+        id="sendMoneyStep1"
+        class="transfer-step-panel"
+    >
+
+        <div class="send-money-grid">
+
+            <!-- =================================================
+                 LEFT - TRANSFER FORM
+            ================================================== -->
+
+            <div class="transfer-card">
+
+                <div class="card-header">
+
+                    <div class="card-header-icon">
+                        <i data-lucide="send"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="transferDetailsTitle">
+                            India to Nepal
+                        </h3>
+
+                        <p id="transferDetailsDescription">
+                            Select your Nepal recipient and enter the amount in INR.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     DIRECTION
+                ============================================== -->
+
+                <div class="transfer-field">
+
+                    <label class="field-label">
+                        Transfer direction
+                    </label>
+
+
+                    <div
+                        class="send-direction-selector"
+                        id="sendDirectionSelector"
+                    >
+
+                        <button
+                            type="button"
+                            class="send-direction-option active"
+                            id="directionIndiaNepal"
+                            data-direction="INR_NPR"
+                            aria-pressed="true"
+                        >
+
+                            <span class="send-direction-flag">
+                                🇮🇳
+                            </span>
+
+                            <span class="send-direction-info">
+
+                                <strong>
+                                    India
+                                </strong>
+
+                                <span>
+                                    INR
+                                </span>
+
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="send-direction-switch"
+                            id="directionSwitch"
+                            aria-label="Switch transfer direction"
+                            title="Switch transfer direction"
+                        >
+                            <i data-lucide="arrow-left-right"></i>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="send-direction-option"
+                            id="directionNepalIndia"
+                            data-direction="NPR_INR"
+                            aria-pressed="false"
+                        >
+
+                            <span class="send-direction-flag">
+                                🇳🇵
+                            </span>
+
+                            <span class="send-direction-info">
+
+                                <strong>
+                                    Nepal
+                                </strong>
+
+                                <span>
+                                    NPR
+                                </span>
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="transfer-route-hint"
+                        id="transferRouteHint"
+                    >
+                        <i data-lucide="route"></i>
+
+                        <span>
+                            Sending from India to Nepal
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     BENEFICIARY
+                ============================================== -->
+
+                <div class="transfer-field">
+
+                    <div class="field-label-row">
+
+                        <label class="field-label">
+                            Beneficiary
+                        </label>
+
+                        <button
+                            type="button"
+                            class="beneficiary-add-button"
+                            id="addBeneficiaryButton"
+                        >
+                            <i data-lucide="plus"></i>
+                            Add beneficiary
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="beneficiary-selector"
+                        id="beneficiarySelector"
+                    >
+
+                        {% for beneficiary in beneficiaries %}
+
+                        <button
+                            type="button"
+                            class="beneficiary-option"
+                            data-beneficiary="{{ beneficiary.id }}"
+                            data-country="{{ beneficiary.country }}"
+                            data-currency="{{ beneficiary.currency }}"
+                            data-name="{{ beneficiary.name }}"
+                            data-bank="{{ beneficiary.bank }}"
+                            data-account="{{ beneficiary.account }}"
+                        >
+
+                            <span class="beneficiary-avatar">
+                                {{ beneficiary.name[0] | upper }}
+                            </span>
+
+
+                            <span class="beneficiary-details">
+
+                                <strong>
+                                    {{ beneficiary.name }}
+                                </strong>
+
+                                <span>
+                                    {{ beneficiary.flag }}
+                                    {{ beneficiary.country }}
+                                    ·
+                                    {{ beneficiary.bank }}
+                                </span>
+
+                            </span>
+
+
+                            <span class="beneficiary-account">
+                                {{ beneficiary.account }}
+                            </span>
+
+
+                            <span class="beneficiary-check">
+                                <i data-lucide="check"></i>
+                            </span>
+
+                        </button>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div
+                        class="beneficiary-empty"
+                        id="beneficiaryEmpty"
+                        hidden
+                    >
+
+                        <i data-lucide="users"></i>
+
+                        <strong>
+                            No beneficiary available
+                        </strong>
+
+                        <span>
+                            Add a recipient in the destination country to continue.
+                        </span>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="emptyAddBeneficiaryButton"
+                        >
+                            <i data-lucide="plus"></i>
+                            Add beneficiary
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     AMOUNT
+                ============================================== -->
+
+                <div class="transfer-field">
+
+                    <label
+                        class="field-label"
+                        for="sendMoneyAmount"
+                    >
+                        Amount to send
+                    </label>
+
+
+                    <div class="send-amount-input">
+
+                        <div class="send-amount-currency">
+
+                            <span
+                                class="send-amount-flag"
+                                id="sendMoneyFlag"
+                            >
+                                🇮🇳
+                            </span>
+
+                            <div>
+
+                                <strong id="sendMoneyCurrency">
+                                    INR
+                                </strong>
+
+                                <span id="sendMoneyCurrencyName">
+                                    Indian Rupee
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <input
+                            type="number"
+                            id="sendMoneyAmount"
+                            name="amount"
+                            min="100"
+                            step="0.01"
+                            placeholder="0.00"
+                            autocomplete="off"
+                        />
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     RECIPIENT PREVIEW
+                ============================================== -->
+
+                <div class="recipient-preview">
+
+                    <div>
+
+                        <span>
+                            Recipient receives
+                        </span>
+
+                        <strong id="sendMoneyRecipientAmount">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <span id="sendMoneyRecipientCurrency">
+                        NPR
+                    </span>
+
+                </div>
+
+
+                <!-- =============================================
+                     SUMMARY
+                ============================================== -->
+
+                <div class="transfer-summary">
+
+                    <div>
+
+                        <span>
+                            Exchange rate
+                        </span>
+
+                        <strong id="sendMoneyRate">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Transfer fee
+                        </span>
+
+                        <strong id="sendMoneyFee">
+                            ₹49.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total payable
+                        </span>
+
+                        <strong id="sendMoneyTotal">
+                            ₹49.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     CONTINUE
+                ============================================== -->
+
+           <button
+    type="button"
+    class="primary-button full-width"
+    id="sendMoneyContinue"
+    onclick="openTransferReview(event)"
+>
+    <span>Continue to Review</span>
+    <i data-lucide="arrow-right"></i>
+</button>
+
+
+                <div class="transfer-safety">
+
+                    <i data-lucide="shield-check"></i>
+
+                    <span>
+                        Your transfer details are protected and securely handled.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT - OVERVIEW
+            ================================================== -->
+
+            <aside class="transfer-overview-card">
+
+                <div class="overview-header">
+
+                    <span class="page-kicker">
+                        TRANSFER OVERVIEW
+                    </span>
+
+                    <h3>
+                        Your transfer
+                    </h3>
+
+                </div>
+
+
+                <!-- Route -->
+
+                <div class="overview-route">
+
+                    <div class="overview-country">
+
+                        <span
+                            id="overviewSendFlag"
+                            class="overview-flag"
+                        >
+                            🇮🇳
+                        </span>
+
+                        <strong id="overviewSendCountry">
+                            India
+                        </strong>
+
+                        <span id="overviewSendCurrency">
+                            INR
+                        </span>
+
+                    </div>
+
+
+                    <div class="overview-route-arrow">
+                        <i data-lucide="arrow-right"></i>
+                    </div>
+
+
+                    <div class="overview-country">
+
+                        <span
+                            id="overviewReceiveFlag"
+                            class="overview-flag"
+                        >
+                            🇳🇵
+                        </span>
+
+                        <strong id="overviewReceiveCountry">
+                            Nepal
+                        </strong>
+
+                        <span id="overviewReceiveCurrency">
+                            NPR
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Beneficiary -->
+
+                <div class="overview-beneficiary">
+
+                    <span
+                        class="overview-beneficiary-avatar"
+                        id="overviewBeneficiaryAvatar"
+                    >
+                        —
+                    </span>
+
+                    <div>
+
+                        <strong id="overviewBeneficiaryName">
+                            No beneficiary selected
+                        </strong>
+
+                        <span id="overviewBeneficiaryBank">
+                            Add a recipient to continue
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Amount -->
+
+                <div class="overview-amount-row">
+
+                    <span>
+                        Sending
+                    </span>
+
+                    <strong id="overviewSendAmount">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-amount-row">
+
+                    <span>
+                        Recipient gets
+                    </span>
+
+                    <strong id="overviewReceiveAmount">
+                        NPR —
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-amount-row">
+
+                    <span>
+                        Transfer fee
+                    </span>
+
+                    <strong id="overviewFee">
+                        ₹49.00
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-amount-row overview-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="overviewTotal">
+                        ₹49.00
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-rate">
+
+                    <span>
+                        Rate
+                    </span>
+
+                    <strong id="overviewRate">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STEP 2
+         REVIEW TRANSFER
+    ====================================================== -->
+
+    <section
+        id="sendMoneyStep2"
+        class="transfer-step-panel"
+        hidden
+    >
+
+        <div class="review-layout">
+
+
+            <!-- =============================================
+                 REVIEW MAIN CARD
+            ============================================== -->
+
+            <div class="transfer-card review-card">
+
+                <div class="card-header">
+
+                    <div class="card-header-icon">
+                        <i data-lucide="file-check-2"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Review your transfer
+                        </h3>
+
+                        <p>
+                            Please check the details carefully before proceeding.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Route -->
+
+                <div class="review-section">
+
+                    <div class="review-section-title">
+                        <span>
+                            Transfer route
+                        </span>
+                    </div>
+
+
+                    <div class="review-route">
+
+                        <div class="review-route-country">
+
+                            <span
+                                class="review-route-flag"
+                                id="reviewSendFlag"
+                            >
+                                🇮🇳
+                            </span>
+
+                            <div>
+
+                                <strong id="reviewSendCountry">
+                                    India
+                                </strong>
+
+                                <span id="reviewSendCurrency">
+                                    INR
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="review-route-arrow">
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+
+
+                        <div class="review-route-country">
+
+                            <span
+                                class="review-route-flag"
+                                id="reviewReceiveFlag"
+                            >
+                                🇳🇵
+                            </span>
+
+                            <div>
+
+                                <strong id="reviewReceiveCountry">
+                                    Nepal
+                                </strong>
+
+                                <span id="reviewReceiveCurrency">
+                                    NPR
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Beneficiary -->
+
+                <div class="review-section">
+
+                    <div class="review-section-title">
+                        <span>
+                            Beneficiary
+                        </span>
+                    </div>
+
+
+                    <div class="review-beneficiary">
+
+                        <span
+                            class="review-beneficiary-avatar"
+                            id="reviewBeneficiaryAvatar"
+                        >
+                            —
+                        </span>
+
+                        <div>
+
+                            <strong id="reviewBeneficiaryName">
+                                —
+                            </strong>
+
+                            <span id="reviewBeneficiaryBank">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Amount details -->
+
+                <div class="review-section">
+
+                    <div class="review-section-title">
+                        <span>
+                            Transfer amount
+                        </span>
+                    </div>
+
+
+                    <div class="review-detail-list">
+
+                        <div class="review-detail-row">
+
+                            <span>
+                                You send
+                            </span>
+
+                            <strong id="reviewSendAmount">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="review-detail-row">
+
+                            <span>
+                                Exchange rate
+                            </span>
+
+                            <strong id="reviewRate">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="review-detail-row">
+
+                            <span>
+                                Recipient receives
+                            </span>
+
+                            <strong id="reviewReceiveAmount">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Payment -->
+
+                <div class="review-section">
+
+                    <div class="review-section-title">
+                        <span>
+                            Payment summary
+                        </span>
+                    </div>
+
+
+                    <div class="review-detail-list">
+
+                        <div class="review-detail-row">
+
+                            <span>
+                                Transfer amount
+                            </span>
+
+                            <strong id="reviewPaymentAmount">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="review-detail-row">
+
+                            <span>
+                                Transfer fee
+                            </span>
+
+                            <strong id="reviewPaymentFee">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="review-detail-row review-detail-total">
+
+                            <span>
+                                Total payable
+                            </span>
+
+                            <strong id="reviewPaymentTotal">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="review-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="backToDetailsButton"
+                    >
+
+                        <i data-lucide="arrow-left"></i>
+
+                        <span>
+                            Back to Details
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="proceedToConfirmButton"
+                    >
+
+                        <span>
+                            Proceed to Confirm
+                        </span>
+
+                        <i data-lucide="arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 REVIEW SIDE SUMMARY
+            ============================================== -->
+
+            <aside class="transfer-overview-card review-side-card">
+
+                <div class="overview-header">
+
+                    <span class="page-kicker">
+                        TRANSFER SUMMARY
+                    </span>
+
+                    <h3>
+                        You're sending
+                    </h3>
+
+                </div>
+
+
+                <div class="review-side-route">
+
+                    <span id="reviewSideSendFlag">
+                        🇮🇳
+                    </span>
+
+                    <strong id="reviewSideRoute">
+                        India → Nepal
+                    </strong>
+
+                    <span id="reviewSideReceiveFlag">
+                        🇳🇵
+                    </span>
+
+                </div>
+
+
+                <div class="review-side-beneficiary">
+
+                    <span
+                        class="overview-beneficiary-avatar"
+                        id="reviewSideBeneficiaryAvatar"
+                    >
+                        —
+                    </span>
+
+                    <div>
+
+                        <strong id="reviewSideBeneficiary">
+                            —
+                        </strong>
+
+                        <span id="reviewSideBank">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="review-side-total">
+
+                    <span>
+                        Total payable
+                    </span>
+
+                    <strong id="reviewSideTotal">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="transfer-safety">
+
+                    <i data-lucide="shield-check"></i>
+
+                    <span>
+                        Review all information before continuing.
+                    </span>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STEP 3
+         CONFIRM TRANSFER
+    ====================================================== -->
+
+    <section
+        id="sendMoneyStep3"
+        class="transfer-step-panel"
+        hidden
+    >
+
+        <div class="confirm-layout">
+
+
+            <!-- =============================================
+                 CONFIRM CARD
+            ============================================== -->
+
+            <div class="transfer-card confirm-card">
+
+                <div class="card-header">
+
+                    <div class="card-header-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Confirm your transfer
+                        </h3>
+
+                        <p>
+                            Verify everything one final time before confirming.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total -->
+
+                <div class="confirm-total-box">
+
+                    <span>
+                        Total payable
+                    </span>
+
+                    <strong id="confirmTotal">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- Route -->
+
+                <div class="confirm-section">
+
+                    <span class="confirm-label">
+                        Transfer route
+                    </span>
+
+                    <strong id="confirmRoute">
+                        India → Nepal
+                    </strong>
+
+                </div>
+
+
+                <!-- Beneficiary -->
+
+                <div class="confirm-section">
+
+                    <span class="confirm-label">
+                        Beneficiary
+                    </span>
+
+
+                    <div class="confirm-beneficiary">
+
+                        <span
+                            class="confirm-beneficiary-avatar"
+                            id="confirmBeneficiaryAvatar"
+                        >
+                            —
+                        </span>
+
+                        <div>
+
+                            <strong id="confirmBeneficiaryName">
+                                —
+                            </strong>
+
+                            <span id="confirmBeneficiaryBank">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Transfer values -->
+
+                <div class="confirm-values">
+
+                    <div>
+
+                        <span>
+                            Amount sent
+                        </span>
+
+                        <strong id="confirmSendAmount">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Recipient receives
+                        </span>
+
+                        <strong id="confirmReceiveAmount">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Exchange rate
+                        </span>
+
+                        <strong id="confirmRate">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Transfer fee
+                        </span>
+
+                        <strong id="confirmFee">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirmation -->
+
+                <div class="confirm-checkbox-wrapper">
+
+                    <label class="confirm-checkbox">
+
+                        <input
+                            type="checkbox"
+                            id="confirmTransferCheckbox"
+                        >
+
+                        <span class="checkbox-custom"></span>
+
+                        <span class="checkbox-text">
+                            I confirm that the transfer details above are correct and I authorize this transfer.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div
+                    class="form-error"
+                    id="confirmError"
+                    hidden
+                ></div>
+
+
+                <!-- Actions -->
+
+                <div class="review-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="backToReviewButton"
+                    >
+
+                        <i data-lucide="arrow-left"></i>
+
+                        <span>
+                            Back to Review
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="confirmTransferButton"
+                        disabled
+                    >
+
+                        <span>
+                            Confirm & Pay
+                        </span>
+
+                        <i data-lucide="check-circle-2"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 CONFIRM SECURITY SIDE
+            ============================================== -->
+
+            <aside class="transfer-overview-card confirm-side-card">
+
+                <div class="overview-header">
+
+                    <span class="page-kicker">
+                        SECURE TRANSFER
+                    </span>
+
+                    <h3>
+                        Almost there
+                    </h3>
+
+                </div>
+
+
+                <div class="confirm-security-list">
+
+                    <div>
+
+                        <span class="confirm-security-icon">
+                            <i data-lucide="shield-check"></i>
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Secure transfer
+                            </strong>
+
+                            <span>
+                                Your transfer details are securely handled.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="confirm-security-icon">
+                            <i data-lucide="badge-check"></i>
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Verified details
+                            </strong>
+
+                            <span>
+                                Confirm the recipient and amount before proceeding.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="confirm-security-icon">
+                            <i data-lucide="clock-3"></i>
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Processing
+                            </strong>
+
+                            <span>
+                                Your transfer will be marked for processing after confirmation.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUCCESS
+    ====================================================== -->
+
+    <section
+        id="sendMoneySuccess"
+        class="transfer-step-panel"
+        hidden
+    >
+
+        <div class="success-container">
+
+            <div class="transfer-card success-card">
+
+                <div class="success-icon">
+
+                    <i data-lucide="check"></i>
+
+                </div>
+
+
+                <span class="page-kicker">
+                    TRANSFER CREATED
+                </span>
+
+
+                <h2>
+                    Transfer confirmed
+                </h2>
+
+
+                <p class="success-message">
+                    Your transfer request has been successfully created and is now being processed.
+                </p>
+
+
+                <!-- Transaction ID -->
+
+                <div class="success-transaction">
+
+                    <span>
+                        Transaction ID
+                    </span>
+
+                    <strong id="successTransactionId">
+                        OIGR-XXXXXXXX
+                    </strong>
+
+                </div>
+
+
+                <!-- Route -->
+
+                <div class="success-route">
+
+                    <div>
+
+                        <span
+                            id="successSendFlag"
+                            class="success-route-flag"
+                        >
+                            🇮🇳
+                        </span>
+
+                        <strong id="successSendCountry">
+                            India
+                        </strong>
+
+                        <small id="successSendCurrency">
+                            INR
+                        </small>
+
+                    </div>
+
+
+                    <i data-lucide="arrow-right"></i>
+
+
+                    <div>
+
+                        <span
+                            id="successReceiveFlag"
+                            class="success-route-flag"
+                        >
+                            🇳🇵
+                        </span>
+
+                        <strong id="successReceiveCountry">
+                            Nepal
+                        </strong>
+
+                        <small id="successReceiveCurrency">
+                            NPR
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Amounts -->
+
+                <div class="success-amounts">
+
+                    <div>
+
+                        <span>
+                            You sent
+                        </span>
+
+                        <strong id="successSendAmount">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Recipient receives
+                        </span>
+
+                        <strong id="successReceiveAmount">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="success-status">
+
+                    <i data-lucide="clock-3"></i>
+
+                    <div>
+
+                        <strong>
+                            Processing
+                        </strong>
+
+                        <span>
+                            Your transaction is currently being processed.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="newTransferButton"
+                >
+
+                    <i data-lucide="plus"></i>
+
+                    <span>
+                        Start New Transfer
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADD BENEFICIARY MODAL
+    ====================================================== -->
+
+    <div
+        class="beneficiary-modal"
+        id="beneficiaryModal"
+        hidden
+    >
+
+        <div class="beneficiary-modal-backdrop"></div>
+
+
+        <div
+            class="beneficiary-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="beneficiaryModalTitle"
+        >
+
+            <div class="beneficiary-modal-header">
+
+                <div>
+
+                    <span class="page-kicker">
+                        BENEFICIARY
+                    </span>
+
+                    <h3 id="beneficiaryModalTitle">
+                        Add beneficiary
+                    </h3>
+
+                    <p id="beneficiaryModalDescription">
+                        Add a recipient for your current transfer route.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="beneficiary-modal-close"
+                    id="beneficiaryModalClose"
+                    aria-label="Close"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+
+            <form
+                id="beneficiaryForm"
+                class="beneficiary-form"
+            >
+
+                <div
+                    class="form-error"
+                    id="beneficiaryFormError"
+                    hidden
+                ></div>
+
+
+                <div class="beneficiary-form-grid">
+
+                    <!-- Name -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label for="beneficiaryName">
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="beneficiaryName"
+                            name="name"
+                            placeholder="Enter full name"
+                            autocomplete="name"
+                        >
+
+                    </div>
+
+
+                    <!-- Country -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label for="beneficiaryCountry">
+                            Country
+                        </label>
+
+                        <select
+                            id="beneficiaryCountry"
+                            name="country"
+                        >
+
+                            <option value="Nepal">
+                                Nepal
+                            </option>
+
+                            <option value="India">
+                                India
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Bank -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label for="beneficiaryBank">
+                            Bank name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="beneficiaryBank"
+                            name="bank"
+                            placeholder="Enter bank name"
+                        >
+
+                    </div>
+
+
+                    <!-- Account -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label for="beneficiaryAccount">
+                            Account number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="beneficiaryAccount"
+                            name="account"
+                            placeholder="Enter account number"
+                            inputmode="numeric"
+                        >
+
+                    </div>
+
+
+                    <!-- Branch -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label for="beneficiaryBranch">
+                            Branch
+                        </label>
+
+                        <input
+                            type="text"
+                            id="beneficiaryBranch"
+                            name="branch"
+                            placeholder="Enter branch name"
+                        >
+
+                    </div>
+
+
+                    <!-- Bank code -->
+
+                    <div class="beneficiary-form-field">
+
+                        <label
+                            for="beneficiaryIfsc"
+                            id="beneficiaryIfscLabel"
+                        >
+                            Bank code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="beneficiaryIfsc"
+                            name="ifsc"
+                            placeholder="Enter bank code"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="beneficiary-modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="beneficiaryModalCancel"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="beneficiarySaveButton"
+                    >
+
+                        <i data-lucide="user-plus"></i>
+
+                        <span>
+                            Save beneficiary
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LIVE TRANSFER DATA
+    ====================================================== -->
+
+    <div
+        id="send-money-data"
+        data-inr-to-npr="{{ inr_to_npr if inr_to_npr is not none else '' }}"
+        data-npr-to-inr="{{ npr_to_inr if npr_to_inr is not none else '' }}"
+        hidden
+    ></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for('static', filename='js/send-money.js') }}"
+></script>
+<script>
+function openTransferReview(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    console.log("Continue to Review clicked");
+
+    const amountInput = document.getElementById("sendMoneyAmount");
+    const beneficiary = document.querySelector(".beneficiary-option.selected, .beneficiary-option.active");
+
+    const amount = parseFloat(amountInput?.value || 0);
+
+    if (!amount || amount < 100) {
+        alert("Please enter an amount of at least ₹100.");
+        return false;
+    }
+
+    if (!beneficiary) {
+        alert("Please select a beneficiary.");
+        return false;
+    }
+
+    const step1 = document.getElementById("sendMoneyStep1");
+    const step2 = document.getElementById("sendMoneyStep2");
+
+    if (!step1 || !step2) {
+        console.error("Review section is missing from send-money.html");
+        alert("Review section is missing. Please update send-money.html.");
+        return false;
+    }
+
+    step1.hidden = true;
+    step2.hidden = false;
+
+    console.log("Review screen opened");
+
+    return false;
+}
+</script>
+
+{% endblock %}

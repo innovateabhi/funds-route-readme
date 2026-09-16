@@ -1,0 +1,1156 @@
+{% extends "customer/base-customer.html" %}
+
+{% block title %}
+Dashboard | OIGR
+{% endblock %}
+
+{% block page_heading %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     WELCOME SECTION
+===================================================== -->
+
+<section class="welcome-section">
+
+
+<div>
+
+    <p class="eyebrow">
+        WELCOME BACK
+    </p>
+
+    <h2>
+        Good evening, {{ customer.first_name }} 👋
+    </h2>
+
+    <p>
+        Send and receive money securely between India and Nepal.
+    </p>
+
+</div>
+
+<a
+    href="#quick-transfer"
+    class="primary-button"
+>
+
+    <i data-lucide="send"></i>
+
+    Send Money
+
+</a>
+
+
+</section>
+
+<!-- =====================================================
+     KYC / VERIFICATION
+===================================================== -->
+
+<div class="verification-banner">
+
+
+<div class="verification-main">
+
+    <div class="verification-icon">
+
+        <i data-lucide="badge-check"></i>
+
+    </div>
+
+    <div>
+
+        <div class="verification-title">
+
+            <strong>
+                Identity verified
+            </strong>
+
+            <span class="status-pill verified">
+                Verified
+            </span>
+
+        </div>
+
+        <p>
+            Your account is ready for international transfers.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="verification-security">
+
+    <i data-lucide="lock-keyhole"></i>
+
+    <span>
+        Secure Account
+    </span>
+
+</div>
+
+
+</div>
+
+<!-- =====================================================
+     DASHBOARD STATS
+===================================================== -->
+
+<div class="stats-grid">
+
+
+<!-- TOTAL SENT -->
+
+<article class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-icon">
+
+            <i data-lucide="arrow-up-right"></i>
+
+        </div>
+
+        <span class="stat-trend positive">
+            +12.4%
+        </span>
+
+    </div>
+
+    <p class="stat-label">
+        Total Sent
+    </p>
+
+    <h3>
+        ₹{{ "{:,.0f}".format(stats.total_sent) }}
+    </h3>
+
+    <span class="stat-description">
+        India → Nepal
+    </span>
+
+</article>
+
+
+<!-- TOTAL TRANSFERS -->
+
+<article class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-icon">
+
+            <i data-lucide="repeat-2"></i>
+
+        </div>
+
+    </div>
+
+    <p class="stat-label">
+        Total Transfers
+    </p>
+
+    <h3>
+        {{ stats.transfers }}
+    </h3>
+
+    <span class="stat-description">
+        India ↔ Nepal
+    </span>
+
+</article>
+
+
+<!-- BENEFICIARIES -->
+
+<article class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-icon">
+
+            <i data-lucide="users"></i>
+
+        </div>
+
+    </div>
+
+    <p class="stat-label">
+        Beneficiaries
+    </p>
+
+    <h3>
+        {{ stats.beneficiaries }}
+    </h3>
+
+    <span class="stat-description">
+        Saved recipients
+    </span>
+
+</article>
+
+
+<!-- THIS MONTH -->
+
+<article class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-icon">
+
+            <i data-lucide="calendar-days"></i>
+
+        </div>
+
+        <span class="stat-trend positive">
+            +8.2%
+        </span>
+
+    </div>
+
+    <p class="stat-label">
+        Sent This Month
+    </p>
+
+    <h3>
+        ₹{{ "{:,.0f}".format(stats.this_month) }}
+    </h3>
+
+    <span class="stat-description">
+        September 2026
+    </span>
+
+</article>
+
+
+</div>
+
+<!-- =====================================================
+     MAIN DASHBOARD GRID
+===================================================== -->
+
+<div class="dashboard-grid">
+
+
+<!-- =================================================
+     QUICK TRANSFER
+================================================== -->
+
+<section
+    class="dashboard-card transfer-card"
+    id="quick-transfer"
+>
+
+    <!-- CARD HEADER -->
+
+    <div class="card-header">
+
+        <div>
+
+            <span class="card-kicker">
+                QUICK TRANSFER
+            </span>
+
+            <h3>
+                Send money between India & Nepal
+            </h3>
+
+            <p>
+                Check what your recipient will receive using the live exchange rate.
+            </p>
+
+        </div>
+
+        <div class="card-header-icon">
+
+            <i data-lucide="send-horizontal"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TRANSFER DIRECTION
+    ================================================== -->
+
+    <div class="transfer-direction">
+
+        <!-- SENDER -->
+
+        <div class="direction-country">
+
+            <span class="direction-label">
+                You send from
+            </span>
+
+            <div class="direction-currency">
+
+                <div
+                    class="currency-flag"
+                    id="sendFlag"
+                >
+                    🇮🇳
+                </div>
+
+                <div class="currency-name">
+
+                    <strong id="sendCountry">
+                        India
+                    </strong>
+
+                    <span id="sendCurrency">
+                        INR
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SWITCH -->
+
+        <button
+            type="button"
+            class="transfer-switch"
+            id="transferSwitch"
+            title="Switch transfer direction"
+            aria-label="Switch transfer direction"
+        >
+
+            <i data-lucide="arrow-left-right"></i>
+
+        </button>
+
+
+        <!-- RECIPIENT -->
+
+        <div class="direction-country">
+
+            <span class="direction-label">
+                Recipient receives in
+            </span>
+
+            <div class="direction-currency">
+
+                <div
+                    class="currency-flag"
+                    id="receiveFlag"
+                >
+                    🇳🇵
+                </div>
+
+                <div class="currency-name">
+
+                    <strong id="receiveCountry">
+                        Nepal
+                    </strong>
+
+                    <span id="receiveCurrency">
+                        NPR
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TRANSFER FORM
+    ================================================== -->
+
+    <div class="transfer-form">
+
+
+        <!-- =============================================
+             SEND AMOUNT
+        ============================================== -->
+
+        <div class="amount-box">
+
+            <div class="input-label-row">
+
+                <label for="sendAmount">
+                    You send
+                </label>
+
+                <span id="sendCurrencyLabel">
+                    INR
+                </span>
+
+            </div>
+
+
+            <div class="currency-input">
+
+                <div
+                    class="currency-flag"
+                    id="sendAmountFlag"
+                >
+                    🇮🇳
+                </div>
+
+
+                <div class="currency-name">
+
+                    <strong id="sendAmountCurrency">
+                        INR
+                    </strong>
+
+                    <span id="sendAmountCurrencyName">
+                        Indian Rupee
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="number"
+                    id="sendAmount"
+                    value="10000"
+                    min="100"
+                    step="100"
+                    inputmode="decimal"
+                    aria-label="Amount to send"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             EXCHANGE CONNECTOR
+        ============================================== -->
+
+        <div class="exchange-connector">
+
+            <div class="connector-line"></div>
+
+            <div class="connector-icon">
+
+                <i data-lucide="arrow-down"></i>
+
+            </div>
+
+            <div class="connector-line"></div>
+
+        </div>
+
+
+        <!-- =============================================
+             RECIPIENT AMOUNT
+        ============================================== -->
+
+        <div class="amount-box">
+
+            <div class="input-label-row">
+
+                <label for="receiveAmount">
+                    Recipient gets
+                </label>
+
+                <span id="exchangeRateText">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="currency-input">
+
+                <div
+                    class="currency-flag"
+                    id="receiveAmountFlag"
+                >
+                    🇳🇵
+                </div>
+
+
+                <div class="currency-name">
+
+                    <strong id="receiveAmountCurrency">
+                        NPR
+                    </strong>
+
+                    <span id="receiveAmountCurrencyName">
+                        Nepalese Rupee
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="receive-amount"
+                    id="receiveAmount"
+                >
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             TRANSFER SUMMARY
+        ============================================== -->
+
+        <div class="transfer-summary">
+
+
+            <!-- TRANSFER FEE -->
+
+            <div>
+
+                <span>
+                    Transfer fee
+                </span>
+
+                <strong id="transferFee">
+                    ₹49
+                </strong>
+
+            </div>
+
+
+            <!-- EXCHANGE RATE -->
+
+            <div>
+
+                <span>
+                    Exchange rate
+                </span>
+
+                <strong id="summaryRate">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <!-- TOTAL PAYABLE -->
+
+            <div class="summary-total">
+
+                <span>
+                    You'll pay
+                </span>
+
+                <strong id="totalPayable">
+                    ₹10,049
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             CONTINUE TRANSFER
+        ============================================== -->
+
+        <button
+            type="button"
+            class="primary-button full-width"
+            id="continueTransfer"
+        >
+
+            <span>
+                Continue Transfer
+            </span>
+
+            <i data-lucide="arrow-right"></i>
+
+        </button>
+
+
+        <!-- =============================================
+             SECURITY
+        ============================================== -->
+
+        <div class="transfer-safety">
+
+            <i data-lucide="shield-check"></i>
+
+            <span>
+                Secure and encrypted money transfer
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     LIVE EXCHANGE RATES
+================================================== -->
+
+<section class="dashboard-card">
+
+    <!-- HEADER -->
+
+    <div class="card-header compact">
+
+        <div>
+
+            <span class="card-kicker">
+                LIVE RATES
+            </span>
+
+            <h3>
+                India ↔ Nepal
+            </h3>
+
+        </div>
+
+        <button
+            type="button"
+            class="icon-button"
+            id="refreshRates"
+            title="Refresh exchange rates"
+            aria-label="Refresh exchange rates"
+        >
+
+            <i data-lucide="refresh-cw"></i>
+
+        </button>
+
+    </div>
+
+
+    <p class="rate-base">
+        Live exchange rates
+    </p>
+
+
+    <!-- RATE LIST -->
+
+    <div class="rate-list">
+
+
+        <!-- INDIA → NEPAL -->
+
+        <div class="rate-item">
+
+            <div class="rate-country">
+
+                <div class="rate-flag">
+                    🇮🇳
+                </div>
+
+                <div>
+
+                    <strong>
+                        INR → NPR
+                    </strong>
+
+                    <span>
+                        India → Nepal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="rate-value">
+
+                <strong id="dashboardInrNprRate">
+
+                    {% if inr_to_npr is not none %}
+                        {{ "%.4f"|format(inr_to_npr) }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </strong>
+
+                <span>
+                    NPR
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NEPAL → INDIA -->
+
+        <div class="rate-item">
+
+            <div class="rate-country">
+
+                <div class="rate-flag">
+                    🇳🇵
+                </div>
+
+                <div>
+
+                    <strong>
+                        NPR → INR
+                    </strong>
+
+                    <span>
+                        Nepal → India
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="rate-value">
+
+                <strong id="dashboardNprInrRate">
+
+                    {% if npr_to_inr is not none %}
+                        {{ "%.4f"|format(npr_to_inr) }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </strong>
+
+                <span>
+                    INR
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RATE INFORMATION -->
+
+    <div class="rate-info">
+
+        <i data-lucide="info"></i>
+
+        <span>
+            Rates are fetched live and may change during the day.
+        </span>
+
+    </div>
+
+
+    <!-- VIEW RATES -->
+
+    <a
+        href="#"
+        class="secondary-button full-width"
+    >
+
+        <span>
+            View Exchange Rates
+        </span>
+
+        <i data-lucide="arrow-right"></i>
+
+    </a>
+
+</section>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     RECENT TRANSACTIONS
+===================================================== -->
+
+<section class="dashboard-card transactions-card">
+
+
+<!-- HEADER -->
+
+<div class="card-header">
+
+    <div>
+
+        <span class="card-kicker">
+            ACTIVITY
+        </span>
+
+        <h3>
+            Recent transactions
+        </h3>
+
+    </div>
+
+
+    <a
+        href="#"
+        class="text-link"
+    >
+
+        <span>
+            View all
+        </span>
+
+        <i data-lucide="arrow-right"></i>
+
+    </a>
+
+</div>
+
+
+<!-- =================================================
+     DESKTOP TRANSACTION TABLE
+================================================== -->
+
+<div class="transaction-table-wrapper">
+
+    <table class="transaction-table">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Recipient
+                </th>
+
+                <th>
+                    Transaction ID
+                </th>
+
+                <th>
+                    You sent
+                </th>
+
+                <th>
+                    Recipient gets
+                </th>
+
+                <th>
+                    Direction
+                </th>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+                <th></th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for transaction in transactions %}
+
+            <tr>
+
+
+                <!-- RECIPIENT -->
+
+                <td>
+
+                    <div class="transaction-recipient">
+
+                        <div class="recipient-avatar">
+                            {{ transaction.beneficiary[0] }}
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                {{ transaction.beneficiary }}
+                            </strong>
+
+                            <span>
+                                {{ transaction.country_flag }}
+                                {{ transaction.country }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <!-- TRANSACTION ID -->
+
+                <td>
+
+                    <span class="transaction-id">
+                        {{ transaction.id }}
+                    </span>
+
+                </td>
+
+
+                <!-- SENT -->
+
+                <td>
+
+                    <strong>
+
+                        {% if transaction.send_currency == "INR" %}
+                            ₹
+                        {% else %}
+                            NPR
+                        {% endif %}
+
+                        {{ "{:,.2f}".format(transaction.amount_sent) }}
+
+                    </strong>
+
+                </td>
+
+
+                <!-- RECEIVED -->
+
+                <td>
+
+                    <strong>
+
+                        {% if transaction.receive_currency == "INR" %}
+                            ₹
+                        {% else %}
+                            NPR
+                        {% endif %}
+
+                        {{ "{:,.2f}".format(transaction.amount_received) }}
+
+                    </strong>
+
+                </td>
+
+
+                <!-- DIRECTION -->
+
+                <td>
+
+                    <span class="transaction-direction">
+                        {{ transaction.direction }}
+                    </span>
+
+                </td>
+
+
+                <!-- DATE -->
+
+                <td>
+                    {{ transaction.date }}
+                </td>
+
+
+                <!-- STATUS -->
+
+                <td>
+
+                    <span
+                        class="status-pill {{ transaction.status|lower }}"
+                    >
+
+                        <span class="status-dot"></span>
+
+                        {{ transaction.status }}
+
+                    </span>
+
+                </td>
+
+
+                <!-- ACTION -->
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="table-action"
+                        title="View transaction"
+                        aria-label="View transaction"
+                    >
+
+                        <i data-lucide="chevron-right"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- =================================================
+     MOBILE TRANSACTIONS
+================================================== -->
+
+<div class="mobile-transactions">
+
+    {% for transaction in transactions %}
+
+    <article class="mobile-transaction-card">
+
+
+        <!-- TOP -->
+
+        <div class="mobile-transaction-top">
+
+            <div class="transaction-recipient">
+
+                <div class="recipient-avatar">
+                    {{ transaction.beneficiary[0] }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ transaction.beneficiary }}
+                    </strong>
+
+                    <span>
+                        {{ transaction.country_flag }}
+                        {{ transaction.country }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <span
+                class="status-pill {{ transaction.status|lower }}"
+            >
+                {{ transaction.status }}
+            </span>
+
+        </div>
+
+
+        <!-- DIRECTION -->
+
+        <div class="mobile-transaction-direction">
+            {{ transaction.direction }}
+        </div>
+
+
+        <!-- VALUES -->
+
+        <div class="mobile-transaction-values">
+
+
+            <!-- SENT -->
+
+            <div>
+
+                <span>
+                    You sent
+                </span>
+
+                <strong>
+
+                    {% if transaction.send_currency == "INR" %}
+                        ₹
+                    {% else %}
+                        NPR
+                    {% endif %}
+
+                    {{ "{:,.2f}".format(transaction.amount_sent) }}
+
+                </strong>
+
+            </div>
+
+
+            <!-- RECEIVED -->
+
+            <div>
+
+                <span>
+                    Recipient gets
+                </span>
+
+                <strong>
+
+                    {% if transaction.receive_currency == "INR" %}
+                        ₹
+                    {% else %}
+                        NPR
+                    {% endif %}
+
+                    {{ "{:,.2f}".format(transaction.amount_received) }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTTOM -->
+
+        <div class="mobile-transaction-bottom">
+
+            <span>
+                {{ transaction.date }}
+            </span>
+
+            <button
+                type="button"
+                class="table-action"
+                title="View transaction"
+                aria-label="View transaction"
+            >
+
+                <i data-lucide="chevron-right"></i>
+
+            </button>
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+
+</div>
+
+
+</section>
+
+{% endblock %}
+
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+===================================================== -->
+
+{% block scripts %}
+
+<script
+    src="{{ url_for('static', filename='js/dashboard.js') }}"
+></script>
+
+{% endblock %}

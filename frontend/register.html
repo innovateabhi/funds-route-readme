@@ -1,0 +1,3641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Remittance</title>
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --background: #f5f7fb;
+            --surface: #ffffff;
+            --surface-secondary: #f8fafc;
+
+            --text-primary: #111827;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+
+            --border: #e5e7eb;
+            --border-light: #eef2f7;
+
+            --primary: #155eef;
+            --primary-hover: #0b4fd7;
+            --primary-soft: #eff6ff;
+
+            --success: #16a34a;
+            --success-soft: #f0fdf4;
+
+            --warning: #d97706;
+            --warning-soft: #fffbeb;
+
+            --danger: #dc2626;
+            --danger-soft: #fef2f2;
+
+            --navy: #07132f;
+            --navy-light: #0d1e42;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 22px;
+
+            --shadow-sm:
+                0 1px 2px rgba(16, 24, 40, 0.04);
+
+            --shadow-md:
+                0 12px 32px rgba(16, 24, 40, 0.08);
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .register-page {
+            min-height: 100vh;
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 42% 58%;
+        }
+
+
+        /* =========================================================
+           BRAND SIDE
+        ========================================================= */
+
+        .auth-brand {
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+
+            padding: 60px;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #07132f 0%,
+                    #0d1e42 60%,
+                    #155eef 140%
+                );
+        }
+
+        .auth-brand::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -230px;
+            top: -170px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+        }
+
+        .auth-brand::after {
+            content: "";
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            left: -450px;
+            bottom: -420px;
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 50%;
+        }
+
+        .auth-brand-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 500px;
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .auth-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+
+            margin-bottom: 70px;
+
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+        }
+
+        .auth-logo-mark {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+            color: var(--primary);
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           BRAND CONTENT
+        ========================================================= */
+
+        .auth-brand h1 {
+            max-width: 460px;
+
+            font-size: clamp(42px, 4vw, 64px);
+            line-height: 0.98;
+
+            letter-spacing: -2.8px;
+
+            font-weight: 800;
+        }
+
+        .auth-brand h1 span {
+            display: block;
+            color: #62a0ff;
+        }
+
+        .auth-brand-description {
+            max-width: 430px;
+
+            margin-top: 28px;
+
+            color: rgba(255,255,255,0.68);
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           TRUST
+        ========================================================= */
+
+        .auth-trust {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+
+            margin-top: 42px;
+        }
+
+        .auth-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: rgba(255,255,255,0.84);
+
+            font-size: 14px;
+        }
+
+        .auth-trust-icon {
+            width: 24px;
+            height: 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.10);
+
+            color: #7db1ff;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           FORM SIDE
+        ========================================================= */
+
+        .auth-form-side {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+
+            padding: 50px 35px;
+
+            overflow-y: auto;
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 620px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .auth-header {
+            margin-bottom: 28px;
+        }
+
+        .auth-kicker {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: var(--primary);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+        }
+
+        .auth-header h2 {
+            font-size: 30px;
+            line-height: 1.2;
+
+            letter-spacing: -0.8px;
+        }
+
+        .auth-header p {
+            margin-top: 10px;
+
+            color: var(--text-secondary);
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+
+        .progress-wrapper {
+            margin-bottom: 30px;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+        .progress-label {
+            color: var(--text-primary);
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .progress-count {
+            color: var(--text-muted);
+
+            font-size: 12px;
+        }
+
+        .progress-bar {
+            height: 5px;
+
+            overflow: hidden;
+
+            border-radius: 100px;
+
+            background: #e9eef5;
+        }
+
+        .progress-fill {
+            width: 14.28%;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: var(--primary);
+
+            transition: width 250ms ease;
+        }
+
+
+        /* =========================================================
+           STEP INDICATOR
+        ========================================================= */
+
+        .step-indicator {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 5px;
+
+            margin-bottom: 30px;
+        }
+
+        .step-item {
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+
+            margin: 0 auto 6px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            font-size: 11px;
+        }
+
+        .step-item.active {
+            color: var(--primary);
+        }
+
+        .step-item.active .step-number {
+            border-color: var(--primary);
+
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .step-item.completed .step-number {
+            border-color: var(--success);
+
+            background: var(--success);
+            color: #ffffff;
+        }
+
+
+        /* =========================================================
+           MESSAGE
+        ========================================================= */
+
+        .form-message {
+            display: none;
+
+            margin-bottom: 20px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-message.error {
+            display: block;
+
+            border: 1px solid #fecaca;
+
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        .form-message.success {
+            display: block;
+
+            border: 1px solid #bbf7d0;
+
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+
+        /* =========================================================
+           STEPS
+        ========================================================= */
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 180ms ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            margin-bottom: 22px;
+        }
+
+        .step-title h3 {
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .step-title p {
+            margin-top: 5px;
+
+            color: var(--text-secondary);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--text-primary);
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .required {
+            color: var(--danger);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: #ffffff;
+            color: var(--text-primary);
+
+            font-size: 14px;
+
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #a1aab8;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary);
+
+            box-shadow:
+                0 0 0 3px rgba(21,94,239,0.10);
+        }
+
+        .form-help {
+            margin-top: 6px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           PASSWORD
+        ========================================================= */
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper .form-input {
+            padding-right: 48px;
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 10px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: 0;
+
+            background: transparent;
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           PASSWORD STRENGTH
+        ========================================================= */
+
+        .password-strength {
+            display: flex;
+            gap: 5px;
+
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            flex: 1;
+
+            height: 4px;
+
+            border-radius: 10px;
+
+            background: #e5e7eb;
+        }
+
+        .strength-text {
+            margin-top: 5px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           UPLOAD
+        ========================================================= */
+
+        .file-upload {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 115px;
+
+            padding: 20px;
+
+            border: 1px dashed #cbd5e1;
+
+            border-radius: 12px;
+
+            background: var(--surface-secondary);
+
+            text-align: center;
+
+            transition: 180ms ease;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+
+            background: var(--primary-soft);
+        }
+
+        .file-upload input {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            opacity: 0;
+
+            cursor: pointer;
+        }
+
+        .file-upload-content {
+            pointer-events: none;
+        }
+
+        .file-upload-icon {
+            font-size: 22px;
+
+            margin-bottom: 7px;
+        }
+
+        .file-upload-title {
+            color: var(--text-primary);
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .file-upload-text {
+            margin-top: 3px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           CHECKBOX
+        ========================================================= */
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            color: var(--text-secondary);
+
+            font-size: 13px;
+            line-height: 1.5;
+
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            width: 16px;
+            height: 16px;
+
+            margin-top: 1px;
+
+            accent-color: var(--primary);
+        }
+
+        .checkbox-label a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           REVIEW
+        ========================================================= */
+
+        .review-section {
+            margin-bottom: 20px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            background: #ffffff;
+        }
+
+        .review-header {
+            padding: 12px 15px;
+
+            border-bottom: 1px solid var(--border-light);
+
+            background: var(--surface-secondary);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .review-body {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 0;
+
+        }
+
+        .review-item {
+            padding: 12px 15px;
+
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .review-item:nth-child(odd) {
+            border-right: 1px solid var(--border-light);
+        }
+
+        .review-item-label {
+            color: var(--text-muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .review-item-value {
+            margin-top: 3px;
+
+            color: var(--text-primary);
+
+            font-size: 13px;
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .btn {
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 180ms ease;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+
+            background: #ffffff;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: #cbd5e1;
+
+            background: var(--surface-secondary);
+        }
+
+        .btn-primary {
+            border: 1px solid var(--primary);
+
+            background: var(--primary);
+            color: #ffffff;
+
+            box-shadow:
+                0 5px 12px rgba(21,94,239,0.16);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .auth-switch {
+            margin-top: 28px;
+
+            text-align: center;
+
+            color: var(--text-secondary);
+
+            font-size: 13px;
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+
+            font-weight: 700;
+        }
+
+        .auth-security {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            margin-top: 25px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .auth-page {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-brand {
+                min-height: 360px;
+
+                padding: 45px 35px;
+            }
+
+            .auth-logo {
+                margin-bottom: 45px;
+            }
+
+            .auth-brand h1 {
+                font-size: 44px;
+            }
+
+            .auth-trust {
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                gap: 15px 25px;
+            }
+
+            .auth-form-side {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .auth-brand {
+                min-height: auto;
+
+                padding: 35px 22px;
+            }
+
+            .auth-brand h1 {
+                font-size: 38px;
+                letter-spacing: -1.8px;
+            }
+
+            .auth-brand-description {
+                font-size: 14px;
+            }
+
+            .auth-form-side {
+                padding: 35px 18px;
+            }
+
+            .auth-header h2 {
+                font-size: 25px;
+            }
+
+            .step-indicator {
+                overflow-x: auto;
+
+                grid-template-columns:
+                    repeat(7, minmax(65px, 1fr));
+            }
+
+            .step-item {
+                font-size: 9px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .review-body {
+                grid-template-columns: 1fr;
+            }
+
+            .review-item:nth-child(odd) {
+                border-right: 0;
+            }
+
+            .form-navigation {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="register-page">
+
+<div class="auth-page">
+
+    <!-- =========================================================
+         BRAND SIDE
+    ========================================================== -->
+
+    <section class="auth-brand">
+
+        <div class="auth-brand-content">
+
+            <a href="index.html" class="auth-logo">
+
+                <span class="auth-logo-mark">
+                    R
+                </span>
+
+                <span>
+                    Remittance
+                </span>
+
+            </a>
+
+
+            <h1>
+                YOUR MONEY.
+                <span>
+                    YOUR ROUTE.
+                </span>
+            </h1>
+
+
+            <p class="auth-brand-description">
+                Create your account and get a simpler,
+                secure way to send money across borders.
+            </p>
+
+
+            <div class="auth-trust">
+
+                <div class="auth-trust-item">
+                    <span class="auth-trust-icon">✓</span>
+                    Secure onboarding
+                </div>
+
+                <div class="auth-trust-item">
+                    <span class="auth-trust-icon">✓</span>
+                    KYC verification
+                </div>
+
+                <div class="auth-trust-item">
+                    <span class="auth-trust-icon">✓</span>
+                    Global transfers
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FORM SIDE
+    ========================================================== -->
+
+    <main class="auth-form-side">
+
+        <div class="auth-form-container">
+
+
+            <!-- HEADER -->
+
+            <header class="auth-header">
+
+                <span class="auth-kicker">
+                    Get started
+                </span>
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Complete your information to create
+                    your remittance account.
+                </p>
+
+            </header>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-wrapper">
+
+                <div class="progress-top">
+
+                    <span
+                        class="progress-label"
+                        id="progressLabel"
+                    >
+                        Personal Information
+                    </span>
+
+                    <span
+                        class="progress-count"
+                        id="progressCount"
+                    >
+                        Step 1 of 7
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP INDICATOR -->
+
+            <div class="step-indicator">
+
+                <div class="step-item active">
+                    <div class="step-number">01</div>
+                    Personal
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    Contact
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    Address
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">04</div>
+                    KYC
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">05</div>
+                    Bank
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">06</div>
+                    Security
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">07</div>
+                    Review
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="form-message"
+                id="registerMessage"
+            ></div>
+
+
+            <!-- =====================================================
+                 FORM
+            ====================================================== -->
+
+            <form
+                id="registerForm"
+                novalidate
+            >
+
+
+                <!-- =================================================
+                     STEP 1 — PERSONAL
+                ================================================== -->
+
+                <section
+                    class="form-step active"
+                    data-step="1"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Personal information
+                        </h3>
+
+                        <p>
+                            Enter your legal personal details.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="fullName"
+                            >
+                                Full legal name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter your full legal name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="dateOfBirth"
+                            >
+                                Date of birth
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="date"
+                                id="dateOfBirth"
+                                name="dateOfBirth"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="gender"
+                            >
+                                Gender
+                                <span class="required">*</span>
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="gender"
+                                name="gender"
+                                required
+                            >
+
+                                <option value="">
+                                    Select gender
+                                </option>
+
+                                <option value="male">
+                                    Male
+                                </option>
+
+                                <option value="female">
+                                    Female
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                                <option value="prefer_not_to_say">
+                                    Prefer not to say
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="nationality"
+                            >
+                                Nationality
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="nationality"
+                                name="nationality"
+                                placeholder="e.g. Indian"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="occupation"
+                            >
+                                Occupation
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="occupation"
+                                name="occupation"
+                                placeholder="e.g. Software Engineer"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 2 — CONTACT
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="2"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Contact information
+                        </h3>
+
+                        <p>
+                            We'll use these details to contact you.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="email"
+                            >
+                                Email address
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                            <p class="form-help">
+                                Your email must be unique.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="phone"
+                            >
+                                Mobile number
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+91 98765 43210"
+                                autocomplete="tel"
+                                required
+                            >
+
+                            <p class="form-help">
+                                Include your country code.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="contactConsent"
+                                    required
+                                >
+
+                                <span>
+                                    I confirm that the contact information
+                                    provided belongs to me.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 3 — ADDRESS
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="3"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Residential address
+                        </h3>
+
+                        <p>
+                            Provide your current residential address.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="addressLine"
+                            >
+                                Address
+                                <span class="required">*</span>
+                            </label>
+
+                            <textarea
+                                class="form-textarea"
+                                id="addressLine"
+                                name="addressLine"
+                                placeholder="House / Flat / Street / Locality"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="city"
+                            >
+                                City
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="City"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="state"
+                            >
+                                State
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="state"
+                                name="state"
+                                placeholder="State"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="country"
+                            >
+                                Country
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="country"
+                                name="country"
+                                value="India"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="postalCode"
+                            >
+                                Postal code
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="postalCode"
+                                name="postalCode"
+                                placeholder="PIN / ZIP code"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 4 — KYC
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="4"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Identity verification
+                        </h3>
+
+                        <p>
+                            Submit your identity details for KYC verification.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="documentType"
+                            >
+                                Identity document
+                                <span class="required">*</span>
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="documentType"
+                                name="documentType"
+                                required
+                            >
+
+                                <option value="">
+                                    Select document type
+                                </option>
+
+                                <option value="aadhaar">
+                                    Aadhaar
+                                </option>
+
+                                <option value="passport">
+                                    Passport
+                                </option>
+
+                                <option value="driving_license">
+                                    Driving License
+                                </option>
+
+                                <option value="voter_id">
+                                    Voter ID
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="documentNumber"
+                            >
+                                Document number
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="documentNumber"
+                                name="documentNumber"
+                                placeholder="Enter document number"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Identity document
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="file-upload">
+
+                                <input
+                                    type="file"
+                                    id="documentFile"
+                                    name="documentFile"
+                                    accept="image/*,.pdf"
+                                    required
+                                >
+
+                                <div class="file-upload-content">
+
+                                    <div class="file-upload-icon">
+                                        📄
+                                    </div>
+
+                                    <div
+                                        class="file-upload-title"
+                                        id="documentFileTitle"
+                                    >
+                                        Upload document
+                                    </div>
+
+                                    <div class="file-upload-text">
+                                        JPG, PNG or PDF
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label class="form-label">
+                                Selfie / photo
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="file-upload">
+
+                                <input
+                                    type="file"
+                                    id="selfieFile"
+                                    name="selfieFile"
+                                    accept="image/*"
+                                    required
+                                >
+
+                                <div class="file-upload-content">
+
+                                    <div class="file-upload-icon">
+                                        📷
+                                    </div>
+
+                                    <div
+                                        class="file-upload-title"
+                                        id="selfieFileTitle"
+                                    >
+                                        Upload selfie
+                                    </div>
+
+                                    <div class="file-upload-text">
+                                        JPG or PNG
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="kycConsent"
+                                    required
+                                >
+
+                                <span>
+                                    I confirm that the identity information
+                                    and documents provided are genuine and
+                                    belong to me.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 5 — BANK
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="5"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Bank account
+                        </h3>
+
+                        <p>
+                            Add the bank account that will be used for
+                            remittance transactions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="accountHolderName"
+                            >
+                                Account holder name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="accountHolderName"
+                                name="accountHolderName"
+                                placeholder="Name as registered with bank"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="bankName"
+                            >
+                                Bank name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="bankName"
+                                name="bankName"
+                                placeholder="e.g. State Bank of India"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="accountType"
+                            >
+                                Account type
+                                <span class="required">*</span>
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="accountType"
+                                name="accountType"
+                                required
+                            >
+
+                                <option value="">
+                                    Select account type
+                                </option>
+
+                                <option value="savings">
+                                    Savings
+                                </option>
+
+                                <option value="current">
+                                    Current
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="accountNumber"
+                            >
+                                Account number
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="accountNumber"
+                                name="accountNumber"
+                                placeholder="Enter account number"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="ifscCode"
+                            >
+                                IFSC code
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="ifscCode"
+                                name="ifscCode"
+                                placeholder="e.g. SBIN0001234"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 6 — SECURITY
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="6"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Account security
+                        </h3>
+
+                        <p>
+                            Choose your username and create a secure password.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full">
+
+                            <label
+                                class="form-label"
+                                for="username"
+                            >
+                                Username
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Choose your username"
+                                autocomplete="username"
+                                minlength="3"
+                                maxlength="30"
+                                required
+                            >
+
+                            <p class="form-help">
+                                3–30 characters. Use letters, numbers and
+                                underscores only.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="password"
+                            >
+                                Password
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    class="form-input"
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Create password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                            <div class="password-strength">
+
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+                                <span class="strength-bar"></span>
+
+                            </div>
+
+                            <div
+                                class="strength-text"
+                                id="strengthText"
+                            >
+                                Password strength
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                class="form-label"
+                                for="confirmPassword"
+                            >
+                                Confirm password
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    class="form-input"
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    placeholder="Confirm password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="confirmPassword"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label class="checkbox-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    required
+                                >
+
+                                <span>
+                                    I agree to the
+                                    <a href="#">
+                                        Terms & Conditions
+                                    </a>
+                                    and confirm that the information
+                                    provided is accurate.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STEP 7 — REVIEW
+                ================================================== -->
+
+                <section
+                    class="form-step"
+                    data-step="7"
+                >
+
+                    <div class="step-title">
+
+                        <h3>
+                            Review your information
+                        </h3>
+
+                        <p>
+                            Check your details before submitting your
+                            registration.
+                        </p>
+
+                    </div>
+
+
+                    <!-- PERSONAL -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            Personal information
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+                                <div class="review-item-label">
+                                    Full name
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewFullName"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-item-label">
+                                    Date of birth
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewDob"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-item-label">
+                                    Gender
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewGender"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-item-label">
+                                    Nationality
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewNationality"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTACT -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            Contact
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Email
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewEmail"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Mobile
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewPhone"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            Address
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Address
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewAddress"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    City / State
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewCityState"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- KYC -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            KYC
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Document
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewDocument"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Document number
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewDocumentNumber"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BANK -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            Bank account
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Bank
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewBank"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Account holder
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewAccountHolder"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SECURITY -->
+
+                    <div class="review-section">
+
+                        <div class="review-header">
+                            Account
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    Username
+                                </div>
+
+                                <div
+                                    class="review-item-value"
+                                    id="reviewUsername"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+                            <div class="review-item">
+
+                                <div class="review-item-label">
+                                    KYC status
+                                </div>
+
+                                <div class="review-item-value">
+                                    Pending verification
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div style="margin-top: 20px;">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="finalConfirmation"
+                                required
+                            >
+
+                            <span>
+                                I confirm that all information provided is
+                                correct and I authorize Remittance to verify
+                                my identity and submitted information.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     NAVIGATION
+                ================================================== -->
+
+                <div class="form-navigation">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="backButton"
+                        style="display:none;"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="nextButton"
+                    >
+                        Continue →
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="submitButton"
+                        style="display:none;"
+                    >
+                        Submit Registration
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <div class="auth-switch">
+
+                Already have an account?
+
+                <a href="login">
+                    Sign in
+                </a>
+
+            </div>
+
+
+            <div class="auth-security">
+
+                <span>🔒</span>
+
+                Your information is protected
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* =========================================================
+       REGISTRATION STATE
+    ========================================================= */
+
+    let currentStep = 1;
+
+    const totalSteps = 7;
+
+
+    const stepNames = [
+        "Personal Information",
+        "Contact Information",
+        "Residential Address",
+        "Identity Verification",
+        "Bank Account",
+        "Account Security",
+        "Review Information"
+    ];
+
+
+    const steps =
+        document.querySelectorAll(".form-step");
+
+    const indicators =
+        document.querySelectorAll(".step-item");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const progressLabel =
+        document.getElementById("progressLabel");
+
+    const progressCount =
+        document.getElementById("progressCount");
+
+    const backButton =
+        document.getElementById("backButton");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+    const message =
+        document.getElementById("registerMessage");
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+
+    /* =========================================================
+       SHOW STEP
+    ========================================================= */
+
+    function showStep(step) {
+
+        currentStep = step;
+
+
+        steps.forEach((item, index) => {
+
+            item.classList.toggle(
+                "active",
+                index + 1 === step
+            );
+
+        });
+
+
+        indicators.forEach((item, index) => {
+
+            const number = index + 1;
+
+            item.classList.toggle(
+                "active",
+                number === step
+            );
+
+            item.classList.toggle(
+                "completed",
+                number < step
+            );
+
+        });
+
+
+        progressLabel.textContent =
+            stepNames[step - 1];
+
+        progressCount.textContent =
+            `Step ${step} of ${totalSteps}`;
+
+        progressFill.style.width =
+            `${(step / totalSteps) * 100}%`;
+
+
+        backButton.style.display =
+            step > 1 ? "block" : "none";
+
+
+        nextButton.style.display =
+            step < totalSteps ? "block" : "none";
+
+
+        submitButton.style.display =
+            step === totalSteps ? "block" : "none";
+
+
+        clearMessage();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        if (step === 7) {
+
+            updateReview();
+
+        }
+
+    }
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    function showError(text) {
+
+        message.textContent = text;
+
+        message.className =
+            "form-message error";
+
+    }
+
+
+    function showSuccess(text) {
+
+        message.textContent = text;
+
+        message.className =
+            "form-message success";
+
+    }
+
+
+    function clearMessage() {
+
+        message.textContent = "";
+
+        message.className =
+            "form-message";
+
+    }
+
+
+    /* =========================================================
+       VALIDATE STEP
+    ========================================================= */
+
+    function validateStep(step) {
+
+        const current =
+            document.querySelector(
+                `.form-step[data-step="${step}"]`
+            );
+
+
+        if (!current) {
+
+            return false;
+
+        }
+
+
+        const fields =
+            current.querySelectorAll(
+                "input, select, textarea"
+            );
+
+
+        for (const field of fields) {
+
+            /* ---------------------------------------------
+               Required checkbox
+            --------------------------------------------- */
+
+            if (
+                field.type === "checkbox" &&
+                field.required &&
+                !field.checked
+            ) {
+
+                showError(
+                    "Please complete the required confirmation."
+                );
+
+                field.focus();
+
+                return false;
+
+            }
+
+
+            /* ---------------------------------------------
+               Required normal field
+            --------------------------------------------- */
+
+            if (
+                field.type !== "checkbox" &&
+                field.type !== "file" &&
+                field.required &&
+                !field.value.trim()
+            ) {
+
+                showError(
+                    "Please complete all required fields."
+                );
+
+                field.focus();
+
+                return false;
+
+            }
+
+
+            /* ---------------------------------------------
+               Email validation
+            --------------------------------------------- */
+
+            if (
+                field.type === "email" &&
+                field.value &&
+                !field.checkValidity()
+            ) {
+
+                showError(
+                    "Please enter a valid email address."
+                );
+
+                field.focus();
+
+                return false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           USERNAME + PASSWORD
+        ===================================================== */
+
+        if (step === 6) {
+
+            const username =
+                document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+
+            const usernamePattern =
+                /^[A-Za-z0-9_]{3,30}$/;
+
+
+            if (!usernamePattern.test(username)) {
+
+                showError(
+                    "Username must contain only letters, numbers and underscores and be 3–30 characters long."
+                );
+
+                document
+                    .getElementById("username")
+                    .focus();
+
+                return false;
+
+            }
+
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+
+            const confirmPassword =
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
+
+
+            if (password.length < 8) {
+
+                showError(
+                    "Password must contain at least 8 characters."
+                );
+
+                document
+                    .getElementById("password")
+                    .focus();
+
+                return false;
+
+            }
+
+
+            if (password !== confirmPassword) {
+
+                showError(
+                    "Passwords do not match."
+                );
+
+                document
+                    .getElementById("confirmPassword")
+                    .focus();
+
+                return false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           KYC FILE VALIDATION
+        ===================================================== */
+
+        if (step === 4) {
+
+            const documentFile =
+                document.getElementById(
+                    "documentFile"
+                );
+
+
+            const selfieFile =
+                document.getElementById(
+                    "selfieFile"
+                );
+
+
+            if (
+                !documentFile ||
+                !documentFile.files.length
+            ) {
+
+                showError(
+                    "Please upload your identity document."
+                );
+
+                return false;
+
+            }
+
+
+            if (
+                !selfieFile ||
+                !selfieFile.files.length
+            ) {
+
+                showError(
+                    "Please upload your selfie."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        return true;
+
+    }
+
+
+    /* =========================================================
+       NEXT
+    ========================================================= */
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            if (!validateStep(currentStep)) {
+
+                return;
+
+            }
+
+
+            if (currentStep < totalSteps) {
+
+                showStep(
+                    currentStep + 1
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       BACK
+    ========================================================= */
+
+    backButton.addEventListener(
+        "click",
+        function () {
+
+            if (currentStep > 1) {
+
+                showStep(
+                    currentStep - 1
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       PASSWORD TOGGLE
+    ========================================================= */
+
+    document
+        .querySelectorAll(".password-toggle")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const target =
+                        document.getElementById(
+                            this.dataset.target
+                        );
+
+
+                    if (!target) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        target.type ===
+                        "password"
+                    ) {
+
+                        target.type =
+                            "text";
+
+                        this.textContent =
+                            "Hide";
+
+                    } else {
+
+                        target.type =
+                            "password";
+
+                        this.textContent =
+                            "Show";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+    /* =========================================================
+       PASSWORD STRENGTH
+    ========================================================= */
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+    const strengthBars =
+        document.querySelectorAll(
+            ".strength-bar"
+        );
+
+    const strengthText =
+        document.getElementById(
+            "strengthText"
+        );
+
+
+    if (passwordInput) {
+
+        passwordInput.addEventListener(
+            "input",
+            function () {
+
+                const value =
+                    this.value;
+
+                let score = 0;
+
+
+                if (value.length >= 8)
+                    score++;
+
+
+                if (/[A-Z]/.test(value))
+                    score++;
+
+
+                if (/[0-9]/.test(value))
+                    score++;
+
+
+                if (/[^A-Za-z0-9]/.test(value))
+                    score++;
+
+
+                strengthBars.forEach(
+                    (bar, index) => {
+
+                        bar.style.background =
+                            index < score
+                                ? "#16a34a"
+                                : "#e5e7eb";
+
+                    }
+                );
+
+
+                const labels = [
+
+                    "Password strength",
+
+                    "Weak password",
+
+                    "Fair password",
+
+                    "Good password",
+
+                    "Strong password"
+
+                ];
+
+
+                strengthText.textContent =
+                    labels[score];
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       FILE NAME DISPLAY
+    ========================================================= */
+
+    const documentFile =
+        document.getElementById(
+            "documentFile"
+        );
+
+
+    if (documentFile) {
+
+        documentFile.addEventListener(
+            "change",
+            function () {
+
+                const title =
+                    document.getElementById(
+                        "documentFileTitle"
+                    );
+
+
+                if (!title) {
+
+                    return;
+
+                }
+
+
+                if (this.files.length) {
+
+                    title.textContent =
+                        this.files[0].name;
+
+                } else {
+
+                    title.textContent =
+                        "Upload document";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    const selfieFile =
+        document.getElementById(
+            "selfieFile"
+        );
+
+
+    if (selfieFile) {
+
+        selfieFile.addEventListener(
+            "change",
+            function () {
+
+                const title =
+                    document.getElementById(
+                        "selfieFileTitle"
+                    );
+
+
+                if (!title) {
+
+                    return;
+
+                }
+
+
+                if (this.files.length) {
+
+                    title.textContent =
+                        this.files[0].name;
+
+                } else {
+
+                    title.textContent =
+                        "Upload selfie";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       REVIEW
+    ========================================================= */
+
+    function value(id) {
+
+        const element =
+            document.getElementById(id);
+
+
+        if (!element) {
+
+            return "—";
+
+        }
+
+
+        return (
+            element.value.trim() ||
+            "—"
+        );
+
+    }
+
+
+    function updateReview() {
+
+        document.getElementById(
+            "reviewFullName"
+        ).textContent =
+            value("fullName");
+
+
+        document.getElementById(
+            "reviewDob"
+        ).textContent =
+            value("dateOfBirth");
+
+
+        const gender =
+            document.getElementById(
+                "gender"
+            );
+
+
+        document.getElementById(
+            "reviewGender"
+        ).textContent =
+            gender &&
+            gender.selectedIndex >= 0
+                ? gender.options[
+                    gender.selectedIndex
+                  ].text
+                : "—";
+
+
+        document.getElementById(
+            "reviewNationality"
+        ).textContent =
+            value("nationality");
+
+
+        document.getElementById(
+            "reviewEmail"
+        ).textContent =
+            value("email");
+
+
+        document.getElementById(
+            "reviewPhone"
+        ).textContent =
+            value("phone");
+
+
+        document.getElementById(
+            "reviewAddress"
+        ).textContent =
+            value("addressLine");
+
+
+        document.getElementById(
+            "reviewCityState"
+        ).textContent =
+            `${value("city")}, ${value("state")}`;
+
+
+        const documentType =
+            document.getElementById(
+                "documentType"
+            );
+
+
+        document.getElementById(
+            "reviewDocument"
+        ).textContent =
+            documentType &&
+            documentType.selectedIndex >= 0
+                ? documentType.options[
+                    documentType.selectedIndex
+                  ].text
+                : "—";
+
+
+        document.getElementById(
+            "reviewDocumentNumber"
+        ).textContent =
+            value("documentNumber");
+
+
+        document.getElementById(
+            "reviewBank"
+        ).textContent =
+            value("bankName");
+
+
+        document.getElementById(
+            "reviewAccountHolder"
+        ).textContent =
+            value("accountHolderName");
+
+
+        document.getElementById(
+            "reviewUsername"
+        ).textContent =
+            value("username");
+
+    }
+
+
+    /* =========================================================
+       FINAL REGISTRATION SUBMISSION
+    ========================================================= */
+
+    registerForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /* ---------------------------------------------
+               Validate final step
+            --------------------------------------------- */
+
+            if (!validateStep(7)) {
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Final confirmation
+            --------------------------------------------- */
+
+            const finalConfirmation =
+                document.getElementById(
+                    "finalConfirmation"
+                );
+
+
+            if (
+                !finalConfirmation ||
+                !finalConfirmation.checked
+            ) {
+
+                showError(
+                    "Please confirm your information before submitting."
+                );
+
+                if (finalConfirmation) {
+
+                    finalConfirmation.focus();
+
+                }
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Make sure KYC files still exist
+            --------------------------------------------- */
+
+            const documentFile =
+                document.getElementById(
+                    "documentFile"
+                );
+
+
+            const selfieFile =
+                document.getElementById(
+                    "selfieFile"
+                );
+
+
+            if (
+                !documentFile ||
+                !documentFile.files.length
+            ) {
+
+                showError(
+                    "Please upload your identity document."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !selfieFile ||
+                !selfieFile.files.length
+            ) {
+
+                showError(
+                    "Please upload your selfie."
+                );
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Disable buttons while submitting
+            --------------------------------------------- */
+
+            submitButton.disabled = true;
+
+            backButton.disabled = true;
+
+            nextButton.disabled = true;
+
+
+            const originalButtonText =
+                submitButton.textContent;
+
+
+            submitButton.textContent =
+                "Submitting...";
+
+
+            clearMessage();
+
+
+            try {
+
+                /* =========================================
+                   CREATE FORM DATA
+                ========================================= */
+
+                const formData =
+                    new FormData(
+                        registerForm
+                    );
+
+
+                /* =========================================
+                   SEND TO FLASK
+                ========================================= */
+
+                const response =
+                    await fetch(
+                        "/api/auth/register",
+                        {
+                            method: "POST",
+
+                            body: formData
+                        }
+                    );
+
+
+                /* =========================================
+                   READ RESPONSE
+                ========================================= */
+
+                let result;
+
+
+                try {
+
+                    result =
+                        await response.json();
+
+                } catch (jsonError) {
+
+                    throw new Error(
+                        "The server returned an invalid response."
+                    );
+
+                }
+
+
+                /* =========================================
+                   HANDLE SERVER ERROR
+                ========================================= */
+
+                if (
+                    !response.ok ||
+                    !result.success
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Registration failed. Please try again."
+                    );
+
+                }
+
+
+                /* =========================================
+                   REGISTRATION SUCCESS
+                ========================================= */
+
+                showSuccess(
+                    result.message ||
+                    "Registration submitted successfully."
+                );
+
+
+                /*
+                 * At this stage the Flask endpoint only
+                 * confirms that it received the data.
+                 *
+                 * Once the backend is connected to MySQL,
+                 * this response will represent the actual
+                 * registration/application creation.
+                 */
+
+
+                console.log(
+                    "Registration response:",
+                    result
+                );
+
+
+                /* -----------------------------------------
+                   Optional successful UI state
+                ----------------------------------------- */
+
+                submitButton.textContent =
+                    "Registration Submitted";
+
+
+                /*
+                 * We intentionally do not redirect yet.
+                 *
+                 * Later, after the complete registration
+                 * system is implemented, we can redirect
+                 * the user to a:
+                 *
+                 * /registration-success
+                 *
+                 * or login page depending on the KYC flow.
+                 */
+
+
+            } catch (error) {
+
+                /* =========================================
+                   HANDLE CONNECTION / SERVER ERROR
+                ========================================= */
+
+                console.error(
+                    "Registration error:",
+                    error
+                );
+
+
+                showError(
+                    error.message ||
+                    "Unable to connect to the registration server. Please try again."
+                );
+
+
+                submitButton.textContent =
+                    originalButtonText;
+
+
+                submitButton.disabled =
+                    false;
+
+
+                backButton.disabled =
+                    false;
+
+
+                nextButton.disabled =
+                    false;
+
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Keep successful submission disabled
+            --------------------------------------------- */
+
+            submitButton.disabled =
+                true;
+
+            backButton.disabled =
+                true;
+
+            nextButton.disabled =
+                true;
+
+        }
+    );
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================= */
+
+    showStep(1);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="One India — Global Remittance makes international money transfers simple, transparent and convenient."
+    >
+
+    <title>
+        One India — Global Remittance
+    </title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #f7f9fc;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 18px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0b1f44;
+        }
+
+        .logo span {
+            color: #1769ff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4b5563;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1769ff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #111827;
+        }
+
+        .btn-primary {
+            background: #1769ff;
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(23, 105, 255, 0.20);
+        }
+
+        .btn-primary:hover {
+            background: #0757e8;
+            box-shadow:
+                0 12px 25px rgba(23, 105, 255, 0.28);
+        }
+
+
+        /* =================================================
+           HERO
+        ================================================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(23, 105, 255, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #071a38 0%,
+                    #0c2b5e 55%,
+                    #0b3f83 100%
+                );
+
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+
+            min-height: 650px;
+
+            padding:
+                100px 24px
+                90px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr
+                0.85fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+
+            padding: 7px 13px;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.18);
+
+            border-radius: 50px;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(46px, 6vw, 78px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            display: block;
+        }
+
+        .hero h1 .highlight {
+            color: #61b3ff;
+        }
+
+        .hero-description {
+            max-width: 600px;
+
+            color:
+                rgba(255, 255, 255, 0.78);
+
+            font-size: 17px;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero .btn-primary {
+            background: white;
+            color: #0b2c61;
+
+            box-shadow: none;
+        }
+
+        .hero .btn-primary:hover {
+            background: #f1f5f9;
+        }
+
+        .hero .btn-outline {
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border-color:
+                rgba(255, 255, 255, 0.25);
+
+            color: white;
+        }
+
+
+        /* =================================================
+           TRANSFER CARD
+        ================================================= */
+
+        .transfer-card {
+            background: white;
+
+            color: #111827;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.22);
+        }
+
+        .transfer-card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .transfer-card-subtitle {
+            font-size: 13px;
+            color: #6b7280;
+
+            margin-bottom: 24px;
+        }
+
+        .currency-row {
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 14px 16px;
+
+            margin-bottom: 12px;
+        }
+
+        .currency-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #6b7280;
+
+            text-transform: uppercase;
+
+            margin-bottom: 5px;
+        }
+
+        .currency-value {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .currency-value strong {
+            font-size: 23px;
+        }
+
+        .currency-code {
+            font-size: 13px;
+            font-weight: 800;
+
+            padding: 5px 9px;
+
+            border-radius: 6px;
+
+            background: #eef4ff;
+
+            color: #1769ff;
+        }
+
+        .rate-info {
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+            padding:
+                4px
+                3px
+                18px;
+        }
+
+        .transfer-button {
+            width: 100%;
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 9px;
+
+            background: #1769ff;
+            color: white;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        /* =================================================
+           SECTION
+        ================================================= */
+
+        .section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                95px 24px;
+        }
+
+        .section-header {
+            max-width: 650px;
+
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            color: #1769ff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size:
+                clamp(30px, 4vw, 45px);
+
+            line-height: 1.1;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+
+        /* =================================================
+           FEATURES
+        ================================================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(15, 23, 42, 0.08);
+        }
+
+        .feature-number {
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: #1769ff;
+
+            margin-bottom: 30px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 9px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+
+        /* =================================================
+           HOW IT WORKS
+        ================================================= */
+
+        .process {
+            background: #eef4fb;
+        }
+
+        .process-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .process-card {
+            background: white;
+
+            padding: 26px;
+
+            border-radius: 14px;
+
+            border: 1px solid #e1e7ef;
+        }
+
+        .process-number {
+            font-size: 35px;
+
+            font-weight: 900;
+
+            color: #1769ff;
+
+            margin-bottom: 30px;
+        }
+
+        .process-card h3 {
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+        .process-card p {
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
+
+        /* =================================================
+           GLOBAL TRANSFERS
+        ================================================= */
+
+        .countries {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .country-card {
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .country-flag {
+            font-size: 28px;
+        }
+
+        .country-card strong {
+            display: block;
+
+            font-size: 14px;
+        }
+
+        .country-card span {
+            font-size: 12px;
+
+            color: #6b7280;
+        }
+
+
+        /* =================================================
+           CTA
+        ================================================= */
+
+        .cta {
+            max-width: 1200px;
+
+            margin:
+                40px auto 90px;
+
+            padding:
+                70px 40px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0a2855,
+                    #1769ff
+                );
+
+            color: white;
+
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size:
+                clamp(30px, 4vw, 45px);
+
+            line-height: 1.1;
+
+            margin-bottom: 14px;
+        }
+
+        .cta p {
+            max-width: 550px;
+
+            margin:
+                0 auto 28px;
+
+            color:
+                rgba(255, 255, 255, 0.78);
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        footer {
+            background: #071a38;
+
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                55px 24px 25px;
+        }
+
+        .footer-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 40px;
+
+            padding-bottom: 35px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.1);
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+
+            color:
+                rgba(255,255,255,0.62);
+        }
+
+        .footer-links {
+            display: flex;
+
+            gap: 55px;
+        }
+
+        .footer-column h4 {
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            font-size: 12px;
+
+            color:
+                rgba(255,255,255,0.62);
+
+            margin-bottom: 7px;
+        }
+
+        .footer-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-top: 20px;
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,0.45);
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+
+                padding-top: 70px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .countries {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .nav-container {
+                padding:
+                    15px 18px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .nav-actions .btn-outline {
+                display: none;
+            }
+
+            .hero-container {
+                padding:
+                    60px 18px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .section {
+                padding:
+                    70px 18px;
+            }
+
+            .process-grid,
+            .countries {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin:
+                    20px 18px 70px;
+
+                padding:
+                    55px 25px;
+            }
+
+            .footer-container {
+                padding:
+                    45px 18px 20px;
+            }
+
+            .footer-links {
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            Funds<span>Route</span> 
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#why-us">
+                Why Us
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#destinations">
+                Destinations
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/login"
+                class="btn btn-outline"
+            >
+                Login
+            </a>
+
+            <a
+                href="/register"
+                class="btn btn-primary"
+            >
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main id="home">
+
+<section class="hero">
+
+    <div class="hero-container">
+
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                INDIA → GLOBAL REMITTANCE
+            </div>
+
+
+            <h1>
+
+                <span>
+                    SEND MONEY
+                </span>
+
+                <span>
+                    <span class="highlight">
+                        ACROSS 
+                    </span>
+                    BORDERS.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                One India makes international money transfers
+                simple, transparent and convenient — helping you
+                send money across borders with confidence.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="/register"
+                    class="btn btn-primary"
+                >
+                    Create Account →
+                </a>
+
+                <a
+                    href="#how-it-works"
+                    class="btn btn-outline"
+                >
+                    How It Works
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TRANSFER PREVIEW -->
+
+        <div class="transfer-card">
+
+            <h3>
+                Quick Transfer
+            </h3>
+
+            <p class="transfer-card-subtitle">
+                See how your transfer works.
+            </p>
+
+
+            <div class="currency-row">
+
+                <div class="currency-label">
+                    You Send
+                </div>
+
+                <div class="currency-value">
+
+                    <strong>
+                        ₹10,000
+                    </strong>
+
+                    <span class="currency-code">
+                        INR
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="currency-row">
+
+                <div class="currency-label">
+                    Recipient Gets
+                </div>
+
+                <div class="currency-value">
+
+                    <strong>
+                        16,000
+                    </strong>
+
+                    <span class="currency-code">
+                        NPR
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="rate-info">
+
+                <span>
+                    Indicative rate
+                </span>
+
+                <strong>
+                    1 INR ≈ 1.60 NPR
+                </strong>
+
+            </div>
+
+
+            <a
+                href="/register"
+                class="transfer-button"
+            >
+                Start Your Transfer
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY US
+===================================================== -->
+
+<section
+    class="section"
+    id="why-us"
+>
+
+    <div class="section-header">
+
+        <div class="section-label">
+            WHY ONE INDIA
+        </div>
+
+        <h2 class="section-title">
+            Built around a simpler
+            way to send money.
+        </h2>
+
+        <p class="section-description">
+
+            International transfers shouldn't feel complicated.
+            One India brings the essential parts of remittance
+            into one straightforward experience.
+
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Transparent
+            </h3>
+
+            <p>
+                See the exchange rate, transfer amount and
+                applicable fees before completing your transfer.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                Convenient
+            </h3>
+
+            <p>
+                Manage recipients, transfers and your account
+                from one simple customer portal.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Verification First
+            </h3>
+
+            <p>
+                Account verification and KYC are built into
+                the onboarding process before transfers begin.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section
+    class="process"
+    id="how-it-works"
+>
+
+    <div class="section">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                HOW IT WORKS
+            </div>
+
+            <h2 class="section-title">
+                From account creation
+                to transfer.
+            </h2>
+
+            <p class="section-description">
+                A simple process designed to keep your
+                international transfer journey clear.
+            </p>
+
+        </div>
+
+
+        <div class="process-grid">
+
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    01
+                </div>
+
+                <h3>
+                    Create Account
+                </h3>
+
+                <p>
+                    Register with your personal and contact
+                    information.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    02
+                </div>
+
+                <h3>
+                    Complete KYC
+                </h3>
+
+                <p>
+                    Submit the required identity information
+                    for verification.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <h3>
+                    Add Recipient
+                </h3>
+
+                <p>
+                    Save the recipient and their destination
+                    banking details.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-number">
+                    04
+                </div>
+
+                <h3>
+                    Send Money
+                </h3>
+
+                <p>
+                    Choose the amount, review the transfer
+                    and complete the process.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DESTINATIONS
+===================================================== -->
+
+<section
+    class="section"
+    id="destinations"
+>
+
+    <div class="section-header">
+
+        <div class="section-label">
+            GLOBAL REACH
+        </div>
+
+        <h2 class="section-title">
+            Send beyond borders.
+        </h2>
+
+        <p class="section-description">
+            Our platform is designed to support
+            international remittance corridors.
+        </p>
+
+    </div>
+
+
+    <div class="countries">
+
+
+        <div class="country-card">
+
+            <div class="country-flag">
+                🇳🇵
+            </div>
+
+            <div>
+
+                <strong>
+                    Nepal
+                </strong>
+
+                <span>
+                    INR → NPR
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="country-card">
+
+            <div class="country-flag">
+                🇺🇸
+            </div>
+
+            <div>
+
+                <strong>
+                    United States
+                </strong>
+
+                <span>
+                    INR → USD
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="country-card">
+
+            <div class="country-flag">
+                🇬🇧
+            </div>
+
+            <div>
+
+                <strong>
+                    United Kingdom
+                </strong>
+
+                <span>
+                    INR → GBP
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="country-card">
+
+            <div class="country-flag">
+                🇦🇪
+            </div>
+
+            <div>
+
+                <strong>
+                    United Arab Emirates
+                </strong>
+
+                <span>
+                    INR → AED
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+    <h2>
+        Ready to move money
+        across borders?
+    </h2>
+
+    <p>
+        Create your One India account and begin your
+        international remittance journey.
+    </p>
+
+    <a
+        href="/register"
+        class="btn btn-primary"
+    >
+        Create Your Account →
+    </a>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-top">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    FundsRoute
+                </h3>
+
+                <p>
+                    A simple digital platform for
+                    international money transfers.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Platform
+                    </h4>
+
+                    <a href="/login">
+                        Login
+                    </a>
+
+                    <a href="/register">
+                        Register
+                    </a>
+
+                    <a href="/dashboard">
+                        Dashboard
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="#why-us">
+                        Why Us
+                    </a>
+
+                    <a href="#how-it-works">
+                        How It Works
+                    </a>
+
+                    <a href="#destinations">
+                        Destinations
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 One India — Global Remittance
+            </span>
+
+            <span>
+                Prototype Platform
+            </span>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

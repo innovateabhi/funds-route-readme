@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+
+{% block styles %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/customer.css') }}"
+>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="app-shell">
+
+```
+<!-- =========================
+     SIDEBAR
+========================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-header">
+
+        <a
+            href="{{ url_for('customer.dashboard') }}"
+            class="brand"
+        >
+
+            <div class="brand-logo">
+                <span>OI</span>
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    One India
+                </strong>
+
+                <span>
+                    Global Remittance
+                </span>
+
+            </div>
+
+        </a>
+
+        <button
+            class="sidebar-close"
+            id="sidebarClose"
+            aria-label="Close navigation"
+        >
+            <i data-lucide="x"></i>
+        </button>
+
+    </div>
+
+
+    <div class="sidebar-section">
+
+        <span class="sidebar-label">
+            OVERVIEW
+        </span>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="{{ url_for('customer.dashboard') }}"
+                class="nav-item active"
+            >
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="send"></i>
+
+                <span>
+                    Send Money
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="users"></i>
+
+                <span>
+                    Beneficiaries
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="receipt-text"></i>
+
+                <span>
+                    Transactions
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <div class="sidebar-section">
+
+        <span class="sidebar-label">
+            FINANCE
+        </span>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="landmark"></i>
+
+                <span>
+                    Exchange Rates
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="bell"></i>
+
+                <span>
+                    Notifications
+                </span>
+
+                <span class="notification-dot">
+                    3
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <div class="sidebar-section">
+
+        <span class="sidebar-label">
+            ACCOUNT
+        </span>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="user-round"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <i data-lucide="settings"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="security-card">
+
+            <div class="security-icon">
+
+                <i data-lucide="shield-check"></i>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Secure transfers
+                </strong>
+
+                <p>
+                    Protected with bank-grade security.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="main-wrapper">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open navigation"
+            >
+
+                <i data-lucide="menu"></i>
+
+            </button>
+
+
+            <div class="header-title">
+
+                <h1>
+
+                    {% block page_heading %}
+                        Dashboard
+                    {% endblock %}
+
+                </h1>
+
+                <span>
+                    One India Customer Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+
+            <button
+                class="icon-button notification-button"
+                aria-label="Notifications"
+            >
+
+                <i data-lucide="bell"></i>
+
+                <span class="notification-indicator"></span>
+
+            </button>
+
+
+            <div class="profile-menu">
+
+                <button
+                    class="profile-trigger"
+                    id="profileTrigger"
+                >
+
+                    <div class="profile-avatar">
+
+                        {% if customer is defined and customer.first_name %}
+                            {{ customer.first_name[0] | upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="profile-details">
+
+                        <strong>
+
+                            {% if customer is defined and customer.name %}
+                                {{ customer.name }}
+                            {% elif customer is defined and customer.first_name %}
+                                {{ customer.first_name }}
+                            {% else %}
+                                Customer
+                            {% endif %}
+
+                        </strong>
+
+                        <span>
+                            Personal Account
+                        </span>
+
+                    </div>
+
+
+                    <i
+                        data-lucide="chevron-down"
+                        class="profile-chevron"
+                    ></i>
+
+                </button>
+
+
+                <div
+                    class="profile-dropdown"
+                    id="profileDropdown"
+                >
+
+                    <a href="#">
+
+                        <i data-lucide="user"></i>
+
+                        My Profile
+
+                    </a>
+
+
+                    <a href="#">
+
+                        <i data-lucide="settings"></i>
+
+                        Settings
+
+                    </a>
+
+
+                    <div class="dropdown-divider"></div>
+
+
+                    <a
+                        href="#"
+                        class="logout-link"
+                    >
+
+                        <i data-lucide="log-out"></i>
+
+                        Sign Out
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+
+    <section class="page-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </section>
+
+</main>
+```
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+/* =========================================================
+   REGISTER PAGE
+========================================================= */
+
+
+/* Register page has slightly more vertical content */
+
+.register-page .auth-form {
+
+    padding-bottom:
+        2px;
+}
+
+
+/* Keep the registration form comfortable on desktop */
+
+.register-page .form-group:last-of-type {
+
+    margin-bottom:
+        17px;
+}

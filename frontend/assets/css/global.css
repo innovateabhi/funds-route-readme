@@ -1,0 +1,194 @@
+/* =========================================================
+   GLOBAL COMPONENTS
+========================================================= */
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-button {
+
+    min-height:
+        44px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        9px;
+
+    padding:
+        10px 17px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    border-radius:
+        var(--radius-md);
+
+    font-size:
+        14px;
+
+    font-weight:
+        650;
+
+    transition:
+        background var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.primary-button:hover {
+
+    background:
+        var(--primary-hover);
+
+    box-shadow:
+        0 6px 18px
+        rgba(21, 94, 239, 0.18);
+}
+
+
+.primary-button:active {
+
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.secondary-button {
+
+    min-height:
+        44px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        10px 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        white;
+
+    color:
+        var(--text-primary);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    transition:
+        border-color var(--transition),
+        background var(--transition);
+}
+
+
+.secondary-button:hover {
+
+    background:
+        var(--surface-secondary);
+
+    border-color:
+        #cbd5e1;
+}
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+.full-width {
+
+    width:
+        100%;
+}
+
+
+.icon-button {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    background:
+        white;
+
+    color:
+        #475569;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        border-color var(--transition);
+}
+
+
+.icon-button:hover {
+
+    background:
+        #f8fafc;
+
+    color:
+        var(--primary);
+}
+
+
+.icon-button svg,
+.primary-button svg,
+.secondary-button svg {
+
+    width:
+        18px;
+
+    height:
+        18px;
+}
