@@ -1096,19 +1096,6 @@ See the [LICENSE](LICENSE) file for details.
 
 **Abhinandan Roy**
 
-B.Tech Computer Science & Engineering
-
-Interested in:
-
-- Cloud Computing
-- DevOps
-- Backend Development
-- AWS
-- Linux
-- Python
-- Infrastructure
-- Distributed Systems
-
 ---
 
 ## ⭐ Project
