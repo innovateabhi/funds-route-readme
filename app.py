@@ -20,6 +20,7 @@ from routes.send_money import send_money_bp
 
 from services.currency_service import get_exchange_rates
 
+from routes.admin import admin_bp
 
 # =========================================================
 # FLASK APPLICATION
@@ -49,7 +50,7 @@ db.init_app(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(customer_bp)
 app.register_blueprint(send_money_bp)
-
+app.register_blueprint(admin_bp)
 
 # =========================================================
 # HOME / LANDING PAGE

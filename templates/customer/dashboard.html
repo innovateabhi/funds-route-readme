@@ -1,7 +1,7 @@
 {% extends "customer/base-customer.html" %}
 
 {% block title %}
-Dashboard | OIGR
+Dashboard | FundsRoute
 {% endblock %}
 
 {% block page_heading %}
@@ -24,7 +24,7 @@ Dashboard
     </p>
 
     <h2>
-        Good evening, {{ customer.first_name }} 👋
+        <span id="greeting">Good Morning</span>, {{ customer.first_name }} 👋
     </h2>
 
     <p>
@@ -1152,5 +1152,33 @@ Dashboard
 <script
     src="{{ url_for('static', filename='js/dashboard.js') }}"
 ></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const greetingElement = document.getElementById("greeting");
+
+    if (!greetingElement) {
+        return;
+    }
+
+    const currentHour = new Date().getHours();
+
+    let greeting;
+
+    if (currentHour >= 5 && currentHour < 12) {
+        greeting = "Good Morning";
+    } else if (currentHour >= 12 && currentHour < 17) {
+        greeting = "Good Afternoon";
+    } else {
+        greeting = "Good Evening";
+    }
+
+    greetingElement.textContent = greeting;
+
+});
+</script>
+
+
 
 {% endblock %}

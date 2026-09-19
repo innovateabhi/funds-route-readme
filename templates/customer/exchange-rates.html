@@ -1,0 +1,1506 @@
+{% extends "customer/base-customer.html" %}
+
+
+{% block title %}
+    Exchange Rates
+{% endblock %}
+
+
+{% block page_heading %}
+    Exchange Rates
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    /* =========================================================
+   EXCHANGE RATES PAGE
+========================================================= */
+
+.exchange-rates-page {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.exchange-rates-header {
+    margin-bottom: 30px;
+}
+
+.exchange-rates-header .page-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.exchange-rates-header .page-kicker::before {
+    content: "";
+
+    width: 18px;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+}
+
+.exchange-rates-header h2 {
+    margin: 0 0 8px;
+
+    color: var(--text-primary);
+
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
+}
+
+.exchange-rates-header p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.section-heading h3 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   LIVE INDICATOR
+========================================================= */
+
+.live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 5px 9px;
+
+    border: 1px solid rgba(34, 197, 94, 0.16);
+
+    border-radius: 20px;
+
+    background: rgba(34, 197, 94, 0.06);
+
+    color: #16a34a;
+
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.live-dot {
+    position: relative;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+}
+
+.live-dot::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -3px;
+
+    border: 1px solid rgba(34, 197, 94, 0.3);
+
+    border-radius: 50%;
+
+    animation: livePulse 2s infinite;
+}
+
+@keyframes livePulse {
+
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   LIVE RATES SECTION
+========================================================= */
+
+.live-rates-section {
+    margin-bottom: 32px;
+}
+
+
+/* =========================================================
+   RATE GRID
+========================================================= */
+
+.rate-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   RATE CARD
+========================================================= */
+
+.rate-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 20px 21px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 14px;
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 3px 14px rgba(15, 23, 42, 0.035);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* subtle top accent */
+
+.rate-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 2px;
+
+    border-radius: 0 0 5px 5px;
+
+    background: var(--primary);
+
+    opacity: 0.8;
+}
+
+.rate-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(8, 108, 255, 0.22);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   RATE CARD TOP
+========================================================= */
+
+.rate-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   CURRENCY PAIR
+========================================================= */
+
+.currency-pair {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.currency-flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 11px;
+
+    background: var(--background-secondary);
+
+    font-size: 21px;
+
+    box-shadow:
+        0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.currency-code {
+    color: var(--text-primary);
+
+    font-size: 13px;
+    line-height: 1.2;
+
+    font-weight: 750;
+
+    letter-spacing: 0.02em;
+}
+
+.currency-country {
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.rate-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 50%;
+
+    background: var(--background-secondary);
+
+    color: var(--primary);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   RATE VALUE
+========================================================= */
+
+.rate-value-label {
+    margin-bottom: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    line-height: 1.4;
+
+    font-weight: 500;
+
+    letter-spacing: 0.03em;
+}
+
+.rate-value {
+    color: var(--text-primary);
+
+    font-size: 25px;
+    line-height: 1.2;
+
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
+}
+
+.rate-value span {
+    margin-left: 3px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.01em;
+}
+
+
+/* =========================================================
+   NO RATES
+========================================================= */
+
+.no-rates {
+    padding: 30px 20px;
+
+    border: 1px dashed var(--border-color);
+
+    border-radius: 13px;
+
+    background: var(--card-bg);
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CONVERTER SECTION
+========================================================= */
+
+.converter-section {
+    width: 100%;
+
+    max-width: 850px;
+
+    margin-bottom: 26px;
+}
+
+.converter-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 24px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 15px;
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 4px 18px rgba(15, 23, 42, 0.045);
+}
+
+
+/* subtle background decoration */
+
+.converter-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -80px;
+    right: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(8, 108, 255, 0.035);
+
+    pointer-events: none;
+}
+
+.converter-card::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -100px;
+    left: -100px;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(37, 164, 255, 0.025);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONVERTER HEADER
+========================================================= */
+
+.converter-header {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 22px;
+}
+
+.converter-header h3 {
+    margin: 0 0 6px;
+
+    color: var(--text-primary);
+
+    font-size: 17px;
+    line-height: 1.3;
+
+    font-weight: 750;
+}
+
+.converter-header p {
+    max-width: 580px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONVERTER FORM
+========================================================= */
+
+.converter-form {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.converter-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.converter-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.converter-field label {
+    margin-bottom: 7px;
+
+    color: var(--text-primary);
+
+    font-size: 11px;
+    line-height: 1.3;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+========================================================= */
+
+.converter-field input,
+.converter-field select {
+    width: 100%;
+
+    height: 45px;
+
+    padding:
+        0 13px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: var(--background);
+
+    color: var(--text-primary);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.converter-field input::placeholder {
+    color: var(--text-secondary);
+
+    opacity: 0.7;
+}
+
+.converter-field input:hover,
+.converter-field select:hover {
+    border-color: rgba(8, 108, 255, 0.25);
+}
+
+.converter-field input:focus,
+.converter-field select:focus {
+    border-color: var(--primary);
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 0 0 3px rgba(8, 108, 255, 0.08);
+}
+
+
+/* =========================================================
+   CONVERT BUTTON
+========================================================= */
+
+.converter-action {
+    grid-column: 1 / -1;
+
+    margin-top: 3px;
+}
+
+.convert-button {
+    position: relative;
+
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.01em;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 14px rgba(8, 108, 255, 0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.convert-button:hover {
+    transform: translateY(-1px);
+
+    opacity: 0.96;
+
+    box-shadow:
+        0 8px 20px rgba(8, 108, 255, 0.22);
+}
+
+.convert-button:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 4px 10px rgba(8, 108, 255, 0.15);
+}
+
+
+/* =========================================================
+   CONVERSION RESULT
+========================================================= */
+
+.conversion-result {
+    position: relative;
+    z-index: 1;
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 17px 18px;
+
+    border:
+        1px solid
+        rgba(8, 108, 255, 0.14);
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 108, 255, 0.055),
+            rgba(37, 164, 255, 0.025)
+        );
+
+    animation:
+        resultAppear 0.25s ease;
+}
+
+.conversion-result.show {
+    display: block;
+}
+
+@keyframes resultAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.result-label {
+    margin-bottom: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+.result-value {
+    color: var(--primary);
+
+    font-size: 24px;
+    line-height: 1.25;
+
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
+}
+
+.result-note {
+    max-width: 650px;
+
+    margin-top: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   INFORMATION NOTE
+========================================================= */
+
+.rate-note {
+    position: relative;
+
+    width: 100%;
+
+    padding: 15px 17px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 11px;
+
+    background: var(--background-secondary);
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+.rate-note strong {
+    color: var(--text-primary);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .rate-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .converter-section {
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .exchange-rates-page {
+        max-width: 100%;
+    }
+
+    .exchange-rates-header {
+        margin-bottom: 23px;
+    }
+
+    .exchange-rates-header h2 {
+        font-size: 23px;
+    }
+
+    .exchange-rates-header p {
+        font-size: 12px;
+    }
+
+    .section-heading {
+        margin-bottom: 11px;
+    }
+
+    .section-heading h3 {
+        font-size: 15px;
+    }
+
+    .rate-card {
+        padding: 17px;
+    }
+
+    .rate-card-top {
+        margin-bottom: 19px;
+    }
+
+    .currency-flag {
+        width: 37px;
+        height: 37px;
+
+        font-size: 19px;
+    }
+
+    .rate-value {
+        font-size: 22px;
+    }
+
+    .converter-card {
+        padding: 18px;
+    }
+
+    .converter-form {
+        grid-template-columns: 1fr;
+    }
+
+    .converter-field.full-width {
+        grid-column: auto;
+    }
+
+    .converter-action {
+        grid-column: auto;
+    }
+
+    .conversion-result {
+        padding: 15px;
+    }
+
+    .result-value {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .rate-card-top {
+        gap: 7px;
+    }
+
+    .currency-pair {
+        gap: 7px;
+    }
+
+    .currency-country {
+        font-size: 9px;
+    }
+
+    .rate-arrow {
+        width: 27px;
+        height: 27px;
+    }
+
+}
+</style>
+
+
+<section class="exchange-rates-page">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <header class="exchange-rates-header">
+
+        <span class="page-kicker">
+            Live Currency Information
+        </span>
+
+        <h2>
+            Exchange Rates
+        </h2>
+
+        <p>
+            View the latest exchange rates for the
+            India ↔ Nepal remittance corridor and
+            calculate an approximate conversion.
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         LIVE RATES
+    ====================================================== -->
+
+    <section class="live-rates-section">
+
+        <div class="section-heading">
+
+            <h3>
+                Live Rates
+            </h3>
+
+            <span class="live-indicator">
+
+                <span class="live-dot"></span>
+
+                Live
+
+            </span>
+
+        </div>
+
+
+        {% if rates %}
+
+            <div class="rate-grid">
+
+                {% for item in rates %}
+
+                    <div
+                        class="rate-card"
+                        data-from-currency="{{ item.from_currency }}"
+                        data-to-currency="{{ item.to_currency }}"
+                        data-rate="{{ item.rate }}"
+                    >
+
+                        <div class="rate-card-top">
+
+                            <div class="currency-pair">
+
+                                <div class="currency-flag">
+                                    {{ item.from_flag }}
+                                </div>
+
+                                <div>
+
+                                    <div class="currency-code">
+                                        {{ item.from_currency }}
+                                    </div>
+
+                                    <div class="currency-country">
+                                        {{ item.from_country }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="rate-arrow">
+                                →
+                            </div>
+
+
+                            <div class="currency-pair">
+
+                                <div class="currency-flag">
+                                    {{ item.to_flag }}
+                                </div>
+
+                                <div>
+
+                                    <div class="currency-code">
+                                        {{ item.to_currency }}
+                                    </div>
+
+                                    <div class="currency-country">
+                                        {{ item.to_country }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="rate-value-label">
+                            1 {{ item.from_currency }} =
+                        </div>
+
+
+                        <div class="rate-value">
+
+                            {{ "%.4f"|format(item.rate) }}
+
+                            <span>
+                                {{ item.to_currency }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="no-rates">
+
+                Live exchange rates are currently unavailable.
+
+                Please try again later.
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CURRENCY CONVERTER
+    ====================================================== -->
+
+    <section class="converter-section">
+
+        <div class="converter-card">
+
+
+            <div class="converter-header">
+
+                <h3>
+                    Currency Converter
+                </h3>
+
+                <p>
+                    Calculate the approximate value of an amount
+                    using the current exchange rate.
+                </p>
+
+            </div>
+
+
+            <div class="converter-form">
+
+
+                <!-- Amount -->
+
+                <div class="converter-field full-width">
+
+                    <label for="convertAmount">
+                        Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="convertAmount"
+                        placeholder="Enter amount"
+                        min="0"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+
+                <!-- From -->
+
+                <div class="converter-field">
+
+                    <label for="fromCurrency">
+                        From
+                    </label>
+
+                    <select id="fromCurrency">
+
+                        <option value="INR">
+                            INR — Indian Rupee
+                        </option>
+
+                        <option value="NPR">
+                            NPR — Nepalese Rupee
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- To -->
+
+                <div class="converter-field">
+
+                    <label for="toCurrency">
+                        To
+                    </label>
+
+                    <select id="toCurrency">
+
+                        <option value="NPR">
+                            NPR — Nepalese Rupee
+                        </option>
+
+                        <option value="INR">
+                            INR — Indian Rupee
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Convert -->
+
+                <div class="converter-action">
+
+                    <button
+                        type="button"
+                        class="convert-button"
+                        onclick="convertCurrency()"
+                    >
+                        Convert
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONVERSION RESULT
+            ================================================== -->
+
+            <div
+                class="conversion-result"
+                id="conversionResult"
+            >
+
+                <div class="result-label">
+                    Converted Amount
+                </div>
+
+                <div
+                    class="result-value"
+                    id="conversionValue"
+                >
+                    —
+                </div>
+
+                <div class="result-note">
+                    This is an approximate conversion based on
+                    the current available exchange rate.
+                    Final remittance amounts may include applicable
+                    fees and the rate applied at transaction time.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INFORMATION NOTE
+    ====================================================== -->
+
+    <div class="rate-note">
+
+        <strong>
+            About these rates:
+        </strong>
+
+        Exchange rates shown on this page are retrieved
+        from the configured live currency service.
+        FundsRoute currently supports the
+        <strong>INR ↔ NPR</strong> remittance corridor.
+
+        The displayed rate is for informational and
+        conversion purposes and may change over time.
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     EXCHANGE RATE DATA
+     
+     Keep this outside normal JavaScript so Jinja does not
+     cause JavaScript syntax errors in VS Code.
+========================================================= -->
+
+<script
+    id="exchange-rate-data"
+    type="application/json"
+>
+{{ rates | tojson }}
+</script>
+
+
+
+<!-- =========================================================
+     CONVERTER JAVASCRIPT
+========================================================= -->
+
+<script>
+
+const exchangeRates =
+    JSON.parse(
+        document.getElementById(
+            "exchange-rate-data"
+        ).textContent
+    );
+
+
+/*
+    Create a simple lookup map.
+
+    Example:
+
+    INR_NPR → 1.60
+    NPR_INR → 0.62
+*/
+
+const rateMap = {};
+
+
+exchangeRates.forEach(function (item) {
+
+    const key =
+        item.from_currency
+        + "_"
+        + item.to_currency;
+
+
+    rateMap[key] =
+        Number(item.rate);
+
+});
+
+
+
+/*
+    Currency converter
+*/
+
+function convertCurrency() {
+
+
+    /*
+        Get amount
+    */
+
+    const amount =
+        parseFloat(
+            document.getElementById(
+                "convertAmount"
+            ).value
+        );
+
+
+    /*
+        Get selected currencies
+    */
+
+    const fromCurrency =
+        document.getElementById(
+            "fromCurrency"
+        ).value;
+
+
+    const toCurrency =
+        document.getElementById(
+            "toCurrency"
+        ).value;
+
+
+    /*
+        Result elements
+    */
+
+    const resultBox =
+        document.getElementById(
+            "conversionResult"
+        );
+
+
+    const resultValue =
+        document.getElementById(
+            "conversionValue"
+        );
+
+
+
+    /*
+        Validate amount
+    */
+
+    if (
+        isNaN(amount) ||
+        amount <= 0
+    ) {
+
+        resultValue.textContent =
+            "Enter a valid amount";
+
+        resultBox.classList.add("show");
+
+        return;
+
+    }
+
+
+
+    /*
+        Same currency
+    */
+
+    if (
+        fromCurrency === toCurrency
+    ) {
+
+        resultValue.textContent =
+            amount.toLocaleString(
+                "en-IN",
+                {
+                    maximumFractionDigits: 2
+                }
+            )
+            + " "
+            + toCurrency;
+
+        resultBox.classList.add("show");
+
+        return;
+
+    }
+
+
+
+    /*
+        Look for direct exchange rate.
+
+        Example:
+
+        INR → NPR
+
+        key = INR_NPR
+    */
+
+    const directKey =
+        fromCurrency
+        + "_"
+        + toCurrency;
+
+
+    let rate =
+        rateMap[directKey];
+
+
+
+    /*
+        If direct rate doesn't exist,
+        try the reverse rate.
+
+        Example:
+
+        We want INR → NPR
+
+        but only have:
+
+        NPR → INR
+
+        Therefore:
+
+        INR → NPR =
+        1 / NPR → INR
+    */
+
+    if (!rate) {
+
+        const reverseKey =
+            toCurrency
+            + "_"
+            + fromCurrency;
+
+
+        const reverseRate =
+            rateMap[reverseKey];
+
+
+        if (
+            reverseRate &&
+            reverseRate > 0
+        ) {
+
+            rate =
+                1 / reverseRate;
+
+        }
+
+    }
+
+
+
+    /*
+        No rate available
+    */
+
+    if (!rate) {
+
+        resultValue.textContent =
+            "Exchange rate unavailable";
+
+        resultBox.classList.add("show");
+
+        return;
+
+    }
+
+
+
+    /*
+        Calculate result
+    */
+
+    const convertedAmount =
+        amount * rate;
+
+
+
+    /*
+        Display result
+    */
+
+    resultValue.textContent =
+        convertedAmount.toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        )
+        + " "
+        + toCurrency;
+
+
+    resultBox.classList.add("show");
+
+}
+
+</script>
+
+{% endblock %}

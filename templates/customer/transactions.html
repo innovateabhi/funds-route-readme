@@ -1,0 +1,759 @@
+{% extends "customer/base-customer.html" %}
+
+
+{% block title %}
+    Transactions
+{% endblock %}
+
+
+{% block page_heading %}
+    Transactions
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   TRANSACTIONS PAGE
+========================================================= */
+
+.transactions-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.transactions-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+.transactions-header h2 {
+    margin: 0 0 6px;
+
+    color: var(--text-primary);
+
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.transactions-header p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
+.transaction-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+.transaction-search {
+    flex: 1;
+    max-width: 340px;
+}
+
+.transaction-search input,
+.transaction-filter select {
+    width: 100%;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--card-bg);
+
+    color: var(--text-primary);
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+.transaction-search input:focus,
+.transaction-filter select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(8, 108, 255, 0.07);
+}
+
+.transaction-filter {
+    width: 150px;
+}
+
+
+/* =========================================================
+   TRANSACTION LIST
+========================================================= */
+
+.transaction-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.transaction-item {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1.25fr 1.2fr 0.9fr;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px 17px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 11px;
+
+    background: var(--card-bg);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.transaction-item:hover {
+    transform: translateY(-1px);
+
+    border-color: rgba(8, 108, 255, 0.18);
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.045);
+}
+
+
+/* =========================================================
+   RECIPIENT
+========================================================= */
+
+.transaction-recipient {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 0;
+}
+
+.transaction-flag {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 37px;
+    height: 37px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 9px;
+
+    background: var(--background-secondary);
+
+    font-size: 18px;
+}
+
+.transaction-recipient-info {
+    min-width: 0;
+}
+
+.transaction-recipient-name {
+    overflow: hidden;
+
+    margin-bottom: 3px;
+
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transaction-direction {
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.transaction-amount-label {
+    margin-bottom: 3px;
+
+    color: var(--text-secondary);
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+.transaction-amount {
+    color: var(--text-primary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.transaction-received {
+    margin-top: 3px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.transaction-date {
+    color: var(--text-primary);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.transaction-time {
+    margin-top: 3px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.transaction-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-transform: capitalize;
+}
+
+.transaction-status.completed {
+    background: rgba(34, 197, 94, 0.08);
+
+    color: #16a34a;
+}
+
+.transaction-status.processing {
+    background: rgba(245, 158, 11, 0.09);
+
+    color: #d97706;
+}
+
+.transaction-status.failed {
+    background: rgba(239, 68, 68, 0.08);
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   REFERENCE
+========================================================= */
+
+.transaction-reference {
+    grid-column: 1 / -1;
+
+    padding-top: 10px;
+
+    border-top: 1px solid var(--border-color);
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+.transaction-reference strong {
+    color: var(--text-primary);
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.transactions-empty {
+    padding: 45px 20px;
+
+    border: 1px dashed var(--border-color);
+
+    border-radius: 12px;
+
+    background: var(--card-bg);
+
+    text-align: center;
+}
+
+.transactions-empty-icon {
+    margin-bottom: 10px;
+
+    font-size: 28px;
+}
+
+.transactions-empty h3 {
+    margin: 0 0 5px;
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+}
+
+.transactions-empty p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .transaction-item {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 14px;
+    }
+
+    .transaction-status {
+        justify-self: start;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .transactions-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        margin-bottom: 20px;
+    }
+
+    .transactions-header h2 {
+        font-size: 22px;
+    }
+
+    .transaction-toolbar {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .transaction-search {
+        max-width: none;
+    }
+
+    .transaction-filter {
+        width: 100%;
+    }
+
+    .transaction-item {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+    .transaction-reference {
+        grid-column: auto;
+    }
+
+}
+
+</style>
+
+
+<section class="transactions-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="transactions-header">
+
+        <div>
+
+            <h2>
+                Transactions
+            </h2>
+
+            <p>
+                View and track your money transfers
+                across the India ↔ Nepal corridor.
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         FILTERS
+    ====================================================== -->
+
+    <div class="transaction-toolbar">
+
+        <div class="transaction-search">
+
+            <input
+                type="text"
+                id="transactionSearch"
+                placeholder="Search recipient or reference..."
+                oninput="filterTransactions()"
+            >
+
+        </div>
+
+
+        <div class="transaction-filter">
+
+            <select
+                id="transactionStatus"
+                onchange="filterTransactions()"
+            >
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="completed">
+                    Completed
+                </option>
+
+                <option value="processing">
+                    Processing
+                </option>
+
+                <option value="failed">
+                    Failed
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TRANSACTIONS
+    ====================================================== -->
+
+    {% if transactions %}
+
+        <div
+            class="transaction-list"
+            id="transactionList"
+        >
+
+            {% for transaction in transactions %}
+
+                <article
+                    class="transaction-item"
+                    data-status="{{ transaction.status }}"
+                    data-search="
+                        {{ transaction.recipient }}
+                        {{ transaction.reference }}
+                    "
+                >
+
+
+                    <!-- Recipient -->
+
+                    <div class="transaction-recipient">
+
+                        <div class="transaction-flag">
+                            {{ transaction.flag }}
+                        </div>
+
+                        <div class="transaction-recipient-info">
+
+                            <div class="transaction-recipient-name">
+                                {{ transaction.recipient }}
+                            </div>
+
+                            <div class="transaction-direction">
+                                {{ transaction.direction }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Amount -->
+
+                    <div>
+
+                        <div class="transaction-amount-label">
+                            Sent
+                        </div>
+
+                        <div class="transaction-amount">
+                            {{ transaction.source_currency }}
+                            {{ transaction.source_amount }}
+                        </div>
+
+                        <div class="transaction-received">
+                            Received:
+                            {{ transaction.destination_currency }}
+                            {{ transaction.destination_amount }}
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Date -->
+
+                    <div>
+
+                        <div class="transaction-date">
+                            {{ transaction.date }}
+                        </div>
+
+                        <div class="transaction-time">
+                            {{ transaction.time }}
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Status -->
+
+                    <div>
+
+                        <span
+                            class="transaction-status {{ transaction.status }}"
+                        >
+                            {{ transaction.status }}
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- Reference -->
+
+                    <div class="transaction-reference">
+
+                        Reference:
+                        <strong>
+                            {{ transaction.reference }}
+                        </strong>
+
+                        &nbsp; • &nbsp;
+
+                        Rate:
+                        <strong>
+                            {{ transaction.exchange_rate }}
+                        </strong>
+
+                        &nbsp; • &nbsp;
+
+                        Fee:
+                        <strong>
+                            {{ transaction.source_currency }}
+                            {{ transaction.fee }}
+                        </strong>
+
+                    </div>
+
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="transactions-empty">
+
+            <div class="transactions-empty-icon">
+                ↔
+            </div>
+
+            <h3>
+                No transactions yet
+            </h3>
+
+            <p>
+                Your completed and ongoing transfers
+                will appear here.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+</section>
+
+
+
+<script>
+
+/* =========================================================
+   TRANSACTION FILTER
+========================================================= */
+
+function filterTransactions() {
+
+    const searchInput =
+        document.getElementById(
+            "transactionSearch"
+        );
+
+    const statusSelect =
+        document.getElementById(
+            "transactionStatus"
+        );
+
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const status =
+        statusSelect.value;
+
+
+    const transactions =
+        document.querySelectorAll(
+            ".transaction-item"
+        );
+
+
+    transactions.forEach(function (transaction) {
+
+        const transactionText =
+            transaction
+                .getAttribute("data-search")
+                .toLowerCase();
+
+
+        const transactionStatus =
+            transaction
+                .getAttribute("data-status");
+
+
+        const matchesSearch =
+            transactionText.includes(search);
+
+
+        const matchesStatus =
+            status === "all"
+            ||
+            transactionStatus === status;
+
+
+        if (
+            matchesSearch &&
+            matchesStatus
+        ) {
+
+            transaction.style.display =
+                "grid";
+
+        } else {
+
+            transaction.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+{% endblock %}

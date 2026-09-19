@@ -1,4 +1,12 @@
-from flask import Blueprint, jsonify, request
+from flask import (
+    Blueprint,
+    jsonify,
+    request,
+    session,
+    redirect,
+    url_for
+)
+
 from database import db
 
 from sqlalchemy import text
@@ -727,6 +735,7 @@ def register():
                     :password_hash,
                     'kyc_pending'
                 )
+                RETURNING id
             """),
 
             {
@@ -740,7 +749,11 @@ def register():
         )
 
 
-        user_id = user_result.lastrowid
+        # =================================================
+        # GET POSTGRESQL GENERATED USER ID
+        # =================================================
+
+        user_id = user_result.scalar_one()
 
 
         # =================================================
@@ -1064,6 +1077,20 @@ def register():
 
 
 # =========================================================
+# LOGOUT
+# =========================================================
+
+@auth_bp.route("/logout")
+def logout():
+
+    # Remove all session data
+    session.clear()
+
+    # Send customer back to login page
+    return redirect(url_for("login_page"))
+
+
+# =========================================================
 # LOGIN
 # =========================================================
 
@@ -1250,6 +1277,17 @@ def login():
                     user["status"]
 
             }), 403
+
+
+        # =================================================
+        # CREATE LOGIN SESSION
+        # =================================================
+
+        session.permanent = True
+
+        session["user_id"] = user["id"]
+
+        session["username"] = user["username"]
 
 
         # =================================================

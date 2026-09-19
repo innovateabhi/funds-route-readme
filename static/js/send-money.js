@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
        ELEMENT REFERENCES
     ===================================================== */
 
+    // -----------------------------------------------------
     // Direction
+    // -----------------------------------------------------
+
     const directionIndiaNepal =
         document.getElementById("directionIndiaNepal");
 
@@ -14,7 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const directionSwitch =
         document.getElementById("directionSwitch");
 
-    // Transfer details
+
+    // -----------------------------------------------------
+    // Transfer Details
+    // -----------------------------------------------------
+
     const transferDetailsTitle =
         document.getElementById("transferDetailsTitle");
 
@@ -24,7 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const transferRouteHint =
         document.getElementById("transferRouteHint");
 
+
+    // -----------------------------------------------------
     // Beneficiaries
+    // -----------------------------------------------------
+
     const beneficiarySelector =
         document.getElementById("beneficiarySelector");
 
@@ -37,7 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const emptyAddBeneficiaryButton =
         document.getElementById("emptyAddBeneficiaryButton");
 
+
+    // -----------------------------------------------------
     // Amount
+    // -----------------------------------------------------
+
     const sendMoneyFlag =
         document.getElementById("sendMoneyFlag");
 
@@ -50,14 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendMoneyAmount =
         document.getElementById("sendMoneyAmount");
 
-    // Recipient preview
+
+    // -----------------------------------------------------
+    // Recipient Preview
+    // -----------------------------------------------------
+
     const sendMoneyRecipientAmount =
         document.getElementById("sendMoneyRecipientAmount");
 
     const sendMoneyRecipientCurrency =
         document.getElementById("sendMoneyRecipientCurrency");
 
-    // Summary
+
+    // -----------------------------------------------------
+    // Step 1 Summary
+    // -----------------------------------------------------
+
     const sendMoneyRate =
         document.getElementById("sendMoneyRate");
 
@@ -70,7 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const sendMoneyContinue =
         document.getElementById("sendMoneyContinue");
 
-    // Overview
+
+    // -----------------------------------------------------
+    // Step 1 Overview
+    // -----------------------------------------------------
+
     const overviewSendFlag =
         document.getElementById("overviewSendFlag");
 
@@ -113,7 +140,212 @@ document.addEventListener("DOMContentLoaded", () => {
     const overviewRate =
         document.getElementById("overviewRate");
 
+
+    // -----------------------------------------------------
+    // Step Panels
+    // -----------------------------------------------------
+
+    const sendMoneyStep1 =
+        document.getElementById("sendMoneyStep1");
+
+    const sendMoneyStep2 =
+        document.getElementById("sendMoneyStep2");
+
+    const sendMoneyStep3 =
+        document.getElementById("sendMoneyStep3");
+
+    const sendMoneySuccess =
+        document.getElementById("sendMoneySuccess");
+
+
+    // -----------------------------------------------------
+    // Step Indicators
+    // -----------------------------------------------------
+
+    const transferStep1 =
+        document.getElementById("transferStep1");
+
+    const transferStep2 =
+        document.getElementById("transferStep2");
+
+    const transferStep3 =
+        document.getElementById("transferStep3");
+
+
+    // -----------------------------------------------------
+    // STEP 2 - Review
+    // -----------------------------------------------------
+
+    const reviewSendFlag =
+        document.getElementById("reviewSendFlag");
+
+    const reviewSendCountry =
+        document.getElementById("reviewSendCountry");
+
+    const reviewSendCurrency =
+        document.getElementById("reviewSendCurrency");
+
+    const reviewReceiveFlag =
+        document.getElementById("reviewReceiveFlag");
+
+    const reviewReceiveCountry =
+        document.getElementById("reviewReceiveCountry");
+
+    const reviewReceiveCurrency =
+        document.getElementById("reviewReceiveCurrency");
+
+
+    const reviewBeneficiaryAvatar =
+        document.getElementById("reviewBeneficiaryAvatar");
+
+    const reviewBeneficiaryName =
+        document.getElementById("reviewBeneficiaryName");
+
+    const reviewBeneficiaryBank =
+        document.getElementById("reviewBeneficiaryBank");
+
+
+    const reviewSendAmount =
+        document.getElementById("reviewSendAmount");
+
+    const reviewRate =
+        document.getElementById("reviewRate");
+
+    const reviewReceiveAmount =
+        document.getElementById("reviewReceiveAmount");
+
+
+    const reviewPaymentAmount =
+        document.getElementById("reviewPaymentAmount");
+
+    const reviewPaymentFee =
+        document.getElementById("reviewPaymentFee");
+
+    const reviewPaymentTotal =
+        document.getElementById("reviewPaymentTotal");
+
+
+    // -----------------------------------------------------
+    // STEP 2 - Side Summary
+    // -----------------------------------------------------
+
+    const reviewSideSendFlag =
+        document.getElementById("reviewSideSendFlag");
+
+    const reviewSideRoute =
+        document.getElementById("reviewSideRoute");
+
+    const reviewSideReceiveFlag =
+        document.getElementById("reviewSideReceiveFlag");
+
+    const reviewSideBeneficiaryAvatar =
+        document.getElementById("reviewSideBeneficiaryAvatar");
+
+    const reviewSideBeneficiary =
+        document.getElementById("reviewSideBeneficiary");
+
+    const reviewSideBank =
+        document.getElementById("reviewSideBank");
+
+    const reviewSideTotal =
+        document.getElementById("reviewSideTotal");
+
+
+    // -----------------------------------------------------
+    // STEP 2 Actions
+    // -----------------------------------------------------
+
+    const backToDetailsButton =
+        document.getElementById("backToDetailsButton");
+
+    const proceedToConfirmButton =
+        document.getElementById("proceedToConfirmButton");
+
+
+    // -----------------------------------------------------
+    // STEP 3 - Confirm
+    // -----------------------------------------------------
+
+    const confirmTotal =
+        document.getElementById("confirmTotal");
+
+    const confirmRoute =
+        document.getElementById("confirmRoute");
+
+    const confirmBeneficiaryAvatar =
+        document.getElementById("confirmBeneficiaryAvatar");
+
+    const confirmBeneficiaryName =
+        document.getElementById("confirmBeneficiaryName");
+
+    const confirmBeneficiaryBank =
+        document.getElementById("confirmBeneficiaryBank");
+
+    const confirmSendAmount =
+        document.getElementById("confirmSendAmount");
+
+    const confirmReceiveAmount =
+        document.getElementById("confirmReceiveAmount");
+
+    const confirmRate =
+        document.getElementById("confirmRate");
+
+    const confirmFee =
+        document.getElementById("confirmFee");
+
+
+    const confirmTransferCheckbox =
+        document.getElementById("confirmTransferCheckbox");
+
+    const confirmError =
+        document.getElementById("confirmError");
+
+    const backToReviewButton =
+        document.getElementById("backToReviewButton");
+
+    const confirmTransferButton =
+        document.getElementById("confirmTransferButton");
+
+
+    // -----------------------------------------------------
+    // SUCCESS
+    // -----------------------------------------------------
+
+    const successTransactionId =
+        document.getElementById("successTransactionId");
+
+    const successSendFlag =
+        document.getElementById("successSendFlag");
+
+    const successSendCountry =
+        document.getElementById("successSendCountry");
+
+    const successSendCurrency =
+        document.getElementById("successSendCurrency");
+
+    const successReceiveFlag =
+        document.getElementById("successReceiveFlag");
+
+    const successReceiveCountry =
+        document.getElementById("successReceiveCountry");
+
+    const successReceiveCurrency =
+        document.getElementById("successReceiveCurrency");
+
+    const successSendAmount =
+        document.getElementById("successSendAmount");
+
+    const successReceiveAmount =
+        document.getElementById("successReceiveAmount");
+
+    const newTransferButton =
+        document.getElementById("newTransferButton");
+
+
+    // -----------------------------------------------------
     // Modal
+    // -----------------------------------------------------
+
     const beneficiaryModal =
         document.getElementById("beneficiaryModal");
 
@@ -150,7 +382,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const beneficiaryFormError =
         document.getElementById("beneficiaryFormError");
 
-    // Backend rate data
+
+    // -----------------------------------------------------
+    // Backend Rate Data
+    // -----------------------------------------------------
+
     const sendMoneyData =
         document.getElementById("send-money-data");
 
@@ -179,6 +415,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentRate = initialInrToNpr;
 
     let selectedBeneficiary = null;
+
+    let currentReviewData = null;
 
 
     /* =====================================================
@@ -239,7 +477,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     function getConfig() {
+
         return transferConfig[direction];
+
     }
 
 
@@ -304,21 +544,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function escapeHtml(value) {
-
-        return String(value ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-
-    }
-
-
     function maskAccount(account) {
 
-        const value = String(account ?? "").trim();
+        const value =
+            String(account ?? "").trim();
 
         if (!value) {
             return "••••";
@@ -338,12 +567,151 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       TRANSFER STEP MANAGEMENT
+    ===================================================== */
+
+    function hideAllTransferPanels() {
+
+        if (sendMoneyStep1) {
+            sendMoneyStep1.hidden = true;
+        }
+
+        if (sendMoneyStep2) {
+            sendMoneyStep2.hidden = true;
+        }
+
+        if (sendMoneyStep3) {
+            sendMoneyStep3.hidden = true;
+        }
+
+        if (sendMoneySuccess) {
+            sendMoneySuccess.hidden = true;
+        }
+
+    }
+
+
+    function updateStepIndicators(activeStep) {
+
+        const steps = [
+            {
+                element: transferStep1,
+                number: 1
+            },
+            {
+                element: transferStep2,
+                number: 2
+            },
+            {
+                element: transferStep3,
+                number: 3
+            }
+        ];
+
+
+        steps.forEach(step => {
+
+            if (!step.element) {
+                return;
+            }
+
+            step.element.classList.remove(
+                "active",
+                "completed"
+            );
+
+
+            if (step.number === activeStep) {
+
+                step.element.classList.add(
+                    "active"
+                );
+
+            } else if (step.number < activeStep) {
+
+                step.element.classList.add(
+                    "completed"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    function showStep1() {
+
+        hideAllTransferPanels();
+
+        if (sendMoneyStep1) {
+            sendMoneyStep1.hidden = false;
+        }
+
+        updateStepIndicators(1);
+
+        clearConfirmError();
+
+        refreshIcons();
+
+    }
+
+
+    function showStep2() {
+
+        hideAllTransferPanels();
+
+        if (sendMoneyStep2) {
+            sendMoneyStep2.hidden = false;
+        }
+
+        updateStepIndicators(2);
+
+        refreshIcons();
+
+    }
+
+
+    function showStep3() {
+
+        hideAllTransferPanels();
+
+        if (sendMoneyStep3) {
+            sendMoneyStep3.hidden = false;
+        }
+
+        updateStepIndicators(3);
+
+        clearConfirmError();
+
+        refreshIcons();
+
+    }
+
+
+    function showSuccess() {
+
+        hideAllTransferPanels();
+
+        if (sendMoneySuccess) {
+            sendMoneySuccess.hidden = false;
+        }
+
+        updateStepIndicators(3);
+
+        refreshIcons();
+
+    }
+
+
+    /* =====================================================
        TRANSFER DETAILS HEADER
     ===================================================== */
 
     function updateTransferDetails() {
 
         const config = getConfig();
+
 
         if (transferDetailsTitle) {
 
@@ -371,12 +739,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const config = getConfig();
 
+
         if (!transferRouteHint) {
             return;
         }
 
+
         const textElement =
             transferRouteHint.querySelector("span");
+
 
         if (textElement) {
 
@@ -394,9 +765,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateDirectionButtons() {
 
-        if (!directionIndiaNepal || !directionNepalIndia) {
+        if (
+            !directionIndiaNepal ||
+            !directionNepalIndia
+        ) {
             return;
         }
+
 
         const indiaActive =
             direction === "INR_NPR";
@@ -436,6 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSendingCurrency() {
 
         const config = getConfig();
+
 
         if (sendMoneyFlag) {
 
@@ -481,6 +857,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const config = getConfig();
 
+
         if (sendMoneyRecipientCurrency) {
 
             sendMoneyRecipientCurrency.textContent =
@@ -501,50 +878,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (overviewSendFlag) {
-
             overviewSendFlag.textContent =
                 config.sendFlag;
-
         }
-
 
         if (overviewSendCountry) {
-
             overviewSendCountry.textContent =
                 config.sendCountry;
-
         }
-
 
         if (overviewSendCurrency) {
-
             overviewSendCurrency.textContent =
                 config.sendCurrency;
-
         }
-
 
         if (overviewReceiveFlag) {
-
             overviewReceiveFlag.textContent =
                 config.receiveFlag;
-
         }
-
 
         if (overviewReceiveCountry) {
-
             overviewReceiveCountry.textContent =
                 config.receiveCountry;
-
         }
 
-
         if (overviewReceiveCurrency) {
-
             overviewReceiveCurrency.textContent =
                 config.receiveCurrency;
-
         }
 
     }
@@ -558,10 +918,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const config = getConfig();
 
+
         if (sendMoneyFee) {
 
             sendMoneyFee.textContent =
-                `${config.sendCurrency} ${config.fee}`;
+                formatMoney(
+                    config.fee,
+                    config.sendCurrency
+                );
 
         }
 
@@ -569,7 +933,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (overviewFee) {
 
             overviewFee.textContent =
-                `${config.sendCurrency} ${config.fee}`;
+                formatMoney(
+                    config.fee,
+                    config.sendCurrency
+                );
 
         }
 
@@ -585,30 +952,40 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!selectedBeneficiary) {
 
             if (overviewBeneficiaryAvatar) {
-                overviewBeneficiaryAvatar.textContent = "?";
+
+                overviewBeneficiaryAvatar.textContent =
+                    "?";
+
             }
 
             if (overviewBeneficiaryName) {
+
                 overviewBeneficiaryName.textContent =
-                    "Select a recipient";
+                    "No beneficiary selected";
+
             }
 
             if (overviewBeneficiaryBank) {
+
                 overviewBeneficiaryBank.textContent =
-                    "Choose a beneficiary for this transfer";
+                    "Add a recipient to continue";
+
             }
 
             return;
+
         }
 
 
         if (overviewBeneficiaryAvatar) {
 
             overviewBeneficiaryAvatar.textContent =
-                String(selectedBeneficiary.name || "?")
-                    .trim()
-                    .charAt(0)
-                    .toUpperCase();
+                String(
+                    selectedBeneficiary.name || "?"
+                )
+                .trim()
+                .charAt(0)
+                .toUpperCase();
 
         }
 
@@ -627,7 +1004,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectedBeneficiary.bank || "Bank";
 
             const account =
-                maskAccount(selectedBeneficiary.account);
+                maskAccount(
+                    selectedBeneficiary.account
+                );
 
             overviewBeneficiaryBank.textContent =
                 `${bank} · ${account}`;
@@ -647,7 +1026,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const config = getConfig();
+
+        const config =
+            getConfig();
+
 
         const options =
             Array.from(
@@ -659,32 +1041,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let visibleCount = 0;
 
-        let firstVisibleOption = null;
-
 
         options.forEach(option => {
 
             const country =
                 option.dataset.country || "";
 
+
             const matches =
                 country.toLowerCase() ===
                 config.receiveCountry.toLowerCase();
 
 
-            option.hidden = !matches;
+            option.hidden =
+                !matches;
 
-            option.classList.remove("active");
+
+            if (!matches) {
+
+                option.classList.remove(
+                    "active"
+                );
+
+            }
 
 
             if (matches) {
-
                 visibleCount++;
-
-                if (!firstVisibleOption) {
-                    firstVisibleOption = option;
-                }
-
             }
 
         });
@@ -698,11 +1081,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (firstVisibleOption) {
+        /*
+         * Do not automatically select the first
+         * beneficiary when the direction changes.
+         *
+         * The user should explicitly select one.
+         */
 
-            selectBeneficiary(firstVisibleOption);
+        const currentMatches =
+            selectedBeneficiary &&
+            selectedBeneficiary.country &&
+            selectedBeneficiary.country.toLowerCase() ===
+            config.receiveCountry.toLowerCase();
 
-        } else {
+
+        if (!currentMatches) {
 
             selectedBeneficiary = null;
 
@@ -724,7 +1117,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        const config = getConfig();
+        const config =
+            getConfig();
+
 
         const country =
             option.dataset.country || "";
@@ -748,12 +1143,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         options.forEach(item => {
 
-            item.classList.remove("active");
+            item.classList.remove(
+                "active"
+            );
 
         });
 
 
-        option.classList.add("active");
+        option.classList.add(
+            "active"
+        );
 
 
         selectedBeneficiary = {
@@ -792,6 +1191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let stored = [];
 
+
         try {
 
             stored =
@@ -808,7 +1208,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (!Array.isArray(stored) || !beneficiarySelector) {
+        if (
+            !Array.isArray(stored) ||
+            !beneficiarySelector
+        ) {
             return;
         }
 
@@ -839,32 +1242,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        const config = getConfig();
+        const config =
+            getConfig();
 
 
         const button =
             document.createElement("button");
 
-        button.type = "button";
+
+        button.type =
+            "button";
+
 
         button.className =
             "beneficiary-option";
 
 
         button.dataset.beneficiary =
-            beneficiary.id || `local-${Date.now()}`;
+            beneficiary.id ||
+            `local-${Date.now()}`;
+
 
         button.dataset.country =
             beneficiary.country || "";
 
+
         button.dataset.currency =
             beneficiary.currency || "";
+
 
         button.dataset.name =
             beneficiary.name || "";
 
+
         button.dataset.bank =
             beneficiary.bank || "";
+
 
         button.dataset.account =
             beneficiary.account || "";
@@ -873,8 +1286,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const avatar =
             document.createElement("span");
 
+
         avatar.className =
             "beneficiary-avatar";
+
 
         avatar.textContent =
             String(
@@ -888,6 +1303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const details =
             document.createElement("span");
 
+
         details.className =
             "beneficiary-details";
 
@@ -895,12 +1311,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const name =
             document.createElement("strong");
 
+
         name.textContent =
-            beneficiary.name || "Beneficiary";
+            beneficiary.name ||
+            "Beneficiary";
 
 
         const information =
             document.createElement("span");
+
 
         const flag =
             beneficiary.country === "India"
@@ -913,21 +1332,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         details.appendChild(name);
+
         details.appendChild(information);
 
 
         const account =
             document.createElement("span");
 
+
         account.className =
             "beneficiary-account";
 
+
         account.textContent =
-            maskAccount(beneficiary.account);
+            maskAccount(
+                beneficiary.account
+            );
 
 
         const check =
             document.createElement("span");
+
 
         check.className =
             "beneficiary-check";
@@ -936,22 +1361,38 @@ document.addEventListener("DOMContentLoaded", () => {
         const checkIcon =
             document.createElement("i");
 
+
         checkIcon.setAttribute(
             "data-lucide",
             "check"
         );
 
 
-        check.appendChild(checkIcon);
+        check.appendChild(
+            checkIcon
+        );
 
 
-        button.appendChild(avatar);
-        button.appendChild(details);
-        button.appendChild(account);
-        button.appendChild(check);
+        button.appendChild(
+            avatar
+        );
+
+        button.appendChild(
+            details
+        );
+
+        button.appendChild(
+            account
+        );
+
+        button.appendChild(
+            check
+        );
 
 
-        beneficiarySelector.appendChild(button);
+        beneficiarySelector.appendChild(
+            button
+        );
 
 
         button.addEventListener(
@@ -960,14 +1401,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        if (
-            typeof lucide !== "undefined" &&
-            lucide.createIcons
-        ) {
-
-            lucide.createIcons();
-
-        }
+        refreshIcons();
 
 
         if (
@@ -976,7 +1410,9 @@ document.addEventListener("DOMContentLoaded", () => {
             config.receiveCountry
         ) {
 
-            selectBeneficiary(button);
+            selectBeneficiary(
+                button
+            );
 
         }
 
@@ -995,6 +1431,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
 
         let stored = [];
+
 
         try {
 
@@ -1017,7 +1454,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        stored.push(beneficiary);
+        stored.push(
+            beneficiary
+        );
 
 
         localStorage.setItem(
@@ -1034,7 +1473,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateModalForDirection() {
 
-        const config = getConfig();
+        const config =
+            getConfig();
 
 
         if (beneficiaryCountry) {
@@ -1079,14 +1519,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (beneficiaryFormError) {
 
-            beneficiaryFormError.hidden = true;
+            beneficiaryFormError.hidden =
+                true;
 
-            beneficiaryFormError.textContent = "";
+            beneficiaryFormError.textContent =
+                "";
 
         }
 
 
-        beneficiaryModal.hidden = false;
+        beneficiaryModal.hidden =
+            false;
+
 
         document.body.classList.add(
             "modal-open"
@@ -1102,14 +1546,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 50);
 
 
-        if (
-            typeof lucide !== "undefined" &&
-            lucide.createIcons
-        ) {
-
-            lucide.createIcons();
-
-        }
+        refreshIcons();
 
     }
 
@@ -1121,7 +1558,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        beneficiaryModal.hidden = true;
+        beneficiaryModal.hidden =
+            true;
+
 
         document.body.classList.remove(
             "modal-open"
@@ -1135,9 +1574,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (beneficiaryFormError) {
 
-            beneficiaryFormError.hidden = true;
+            beneficiaryFormError.hidden =
+                true;
 
-            beneficiaryFormError.textContent = "";
+            beneficiaryFormError.textContent =
+                "";
 
         }
 
@@ -1243,23 +1684,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault();
 
 
-                const config = getConfig();
+                const config =
+                    getConfig();
 
 
                 const name =
                     beneficiaryName?.value.trim() || "";
 
+
                 const country =
                     beneficiaryCountry?.value || "";
+
 
                 const bank =
                     beneficiaryBank?.value.trim() || "";
 
+
                 const account =
                     beneficiaryAccount?.value.trim() || "";
 
+
                 const branch =
                     beneficiaryBranch?.value.trim() || "";
+
 
                 const ifsc =
                     beneficiaryIfsc?.value.trim() || "";
@@ -1406,6 +1853,7 @@ document.addEventListener("DOMContentLoaded", () => {
         beneficiaryFormError.textContent =
             message;
 
+
         beneficiaryFormError.hidden =
             false;
 
@@ -1416,7 +1864,10 @@ document.addEventListener("DOMContentLoaded", () => {
        RATE EXTRACTION
     ===================================================== */
 
-    function extractRate(data, currency) {
+    function extractRate(
+        data,
+        currency
+    ) {
 
         if (!data) {
             return null;
@@ -1437,6 +1888,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         data.rates[currency]
                     );
 
+
                 return Number.isFinite(value)
                     ? value
                     : null;
@@ -1446,12 +1898,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (data[currency] !== undefined) {
+        if (
+            data[currency] !== undefined
+        ) {
 
             const value =
                 parseFloat(
                     data[currency]
                 );
+
 
             return Number.isFinite(value)
                 ? value
@@ -1460,10 +1915,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (data.rate !== undefined) {
+        if (
+            data.rate !== undefined
+        ) {
 
             const value =
-                parseFloat(data.rate);
+                parseFloat(
+                    data.rate
+                );
+
 
             return Number.isFinite(value)
                 ? value
@@ -1483,7 +1943,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchLiveRate() {
 
-        const config = getConfig();
+        const config =
+            getConfig();
 
 
         if (direction === "INR_NPR") {
@@ -1527,9 +1988,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             if (!response.ok) {
+
                 throw new Error(
                     `HTTP ${response.status}`
                 );
+
             }
 
 
@@ -1577,7 +2040,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateRateDisplay() {
 
-        const config = getConfig();
+        const config =
+            getConfig();
 
 
         if (
@@ -1586,13 +2050,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
 
             if (sendMoneyRate) {
+
                 sendMoneyRate.textContent =
                     "Unavailable";
+
             }
 
+
             if (overviewRate) {
+
                 overviewRate.textContent =
                     "Unavailable";
+
             }
 
             return;
@@ -1636,7 +2105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function calculateTransfer() {
 
-        const config = getConfig();
+        const config =
+            getConfig();
 
 
         const amount =
@@ -1682,7 +2152,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sendMoneyTotal) {
 
                 sendMoneyTotal.textContent =
-                    `${config.sendCurrency} ${config.fee}`;
+                    formatMoney(
+                        config.fee,
+                        config.sendCurrency
+                    );
 
             }
 
@@ -1690,7 +2163,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (overviewTotal) {
 
                 overviewTotal.textContent =
-                    `${config.sendCurrency} ${config.fee}`;
+                    formatMoney(
+                        config.fee,
+                        config.sendCurrency
+                    );
 
             }
 
@@ -1708,9 +2184,9 @@ document.addEventListener("DOMContentLoaded", () => {
             amount + config.fee;
 
 
-        /* =================================================
-           RECIPIENT PREVIEW
-        ================================================== */
+        // -------------------------------------------------
+        // Recipient preview
+        // -------------------------------------------------
 
         if (sendMoneyRecipientAmount) {
 
@@ -1731,14 +2207,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* =================================================
-           TRANSFER SUMMARY
-        ================================================== */
+        // -------------------------------------------------
+        // Summary
+        // -------------------------------------------------
 
         if (sendMoneyFee) {
 
             sendMoneyFee.textContent =
-                `${config.sendCurrency} ${config.fee}`;
+                formatMoney(
+                    config.fee,
+                    config.sendCurrency
+                );
 
         }
 
@@ -1754,9 +2233,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* =================================================
-           OVERVIEW
-        ================================================== */
+        // -------------------------------------------------
+        // Overview
+        // -------------------------------------------------
 
         if (overviewSendAmount) {
 
@@ -1783,7 +2262,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (overviewFee) {
 
             overviewFee.textContent =
-                `${config.sendCurrency} ${config.fee}`;
+                formatMoney(
+                    config.fee,
+                    config.sendCurrency
+                );
 
         }
 
@@ -1800,6 +2282,1120 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         updateRateDisplay();
+
+    }
+
+
+    /* =====================================================
+       BUILD REVIEW DATA
+    ===================================================== */
+
+    function buildReviewData() {
+
+        const config =
+            getConfig();
+
+
+        const amount =
+            parseFloat(
+                sendMoneyAmount?.value || "0"
+            );
+
+
+        const receivedAmount =
+            amount * currentRate;
+
+
+        const totalPayable =
+            amount + config.fee;
+
+
+        return {
+
+            direction:
+                direction,
+
+            sendCountry:
+                config.sendCountry,
+
+            sendCurrency:
+                config.sendCurrency,
+
+            sendFlag:
+                config.sendFlag,
+
+            receiveCountry:
+                config.receiveCountry,
+
+            receiveCurrency:
+                config.receiveCurrency,
+
+            receiveFlag:
+                config.receiveFlag,
+
+            amount:
+                amount,
+
+            receivedAmount:
+                receivedAmount,
+
+            fee:
+                config.fee,
+
+            totalPayable:
+                totalPayable,
+
+            rate:
+                currentRate,
+
+            beneficiary:
+                selectedBeneficiary,
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+    }
+
+
+    /* =====================================================
+       POPULATE STEP 2 REVIEW
+    ===================================================== */
+
+    function populateReview(data) {
+
+        if (!data) {
+            return;
+        }
+
+
+        // -------------------------------------------------
+        // Route
+        // -------------------------------------------------
+
+        if (reviewSendFlag) {
+
+            reviewSendFlag.textContent =
+                data.sendFlag;
+
+        }
+
+
+        if (reviewSendCountry) {
+
+            reviewSendCountry.textContent =
+                data.sendCountry;
+
+        }
+
+
+        if (reviewSendCurrency) {
+
+            reviewSendCurrency.textContent =
+                data.sendCurrency;
+
+        }
+
+
+        if (reviewReceiveFlag) {
+
+            reviewReceiveFlag.textContent =
+                data.receiveFlag;
+
+        }
+
+
+        if (reviewReceiveCountry) {
+
+            reviewReceiveCountry.textContent =
+                data.receiveCountry;
+
+        }
+
+
+        if (reviewReceiveCurrency) {
+
+            reviewReceiveCurrency.textContent =
+                data.receiveCurrency;
+
+        }
+
+
+        // -------------------------------------------------
+        // Beneficiary
+        // -------------------------------------------------
+
+        const beneficiary =
+            data.beneficiary;
+
+
+        if (beneficiary) {
+
+            const firstLetter =
+                String(
+                    beneficiary.name || "?"
+                )
+                .trim()
+                .charAt(0)
+                .toUpperCase();
+
+
+            if (reviewBeneficiaryAvatar) {
+
+                reviewBeneficiaryAvatar.textContent =
+                    firstLetter;
+
+            }
+
+
+            if (reviewBeneficiaryName) {
+
+                reviewBeneficiaryName.textContent =
+                    beneficiary.name || "Beneficiary";
+
+            }
+
+
+            if (reviewBeneficiaryBank) {
+
+                reviewBeneficiaryBank.textContent =
+                    `${beneficiary.bank || "Bank"} · ${maskAccount(
+                        beneficiary.account
+                    )}`;
+
+            }
+
+        }
+
+
+        // -------------------------------------------------
+        // Transfer Amount
+        // -------------------------------------------------
+
+        if (reviewSendAmount) {
+
+            reviewSendAmount.textContent =
+                formatMoney(
+                    data.amount,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        if (reviewRate) {
+
+            reviewRate.textContent =
+                `1 ${data.sendCurrency} = ${Number(
+                    data.rate
+                ).toLocaleString(
+                    "en-IN",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
+                    }
+                )} ${data.receiveCurrency}`;
+
+        }
+
+
+        if (reviewReceiveAmount) {
+
+            reviewReceiveAmount.textContent =
+                formatMoney(
+                    data.receivedAmount,
+                    data.receiveCurrency
+                );
+
+        }
+
+
+        // -------------------------------------------------
+        // Payment Summary
+        // -------------------------------------------------
+
+        if (reviewPaymentAmount) {
+
+            reviewPaymentAmount.textContent =
+                formatMoney(
+                    data.amount,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        if (reviewPaymentFee) {
+
+            reviewPaymentFee.textContent =
+                formatMoney(
+                    data.fee,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        if (reviewPaymentTotal) {
+
+            reviewPaymentTotal.textContent =
+                formatMoney(
+                    data.totalPayable,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        // -------------------------------------------------
+        // Side Summary
+        // -------------------------------------------------
+
+        if (reviewSideSendFlag) {
+
+            reviewSideSendFlag.textContent =
+                data.sendFlag;
+
+        }
+
+
+        if (reviewSideRoute) {
+
+            reviewSideRoute.textContent =
+                `${data.sendCountry} → ${data.receiveCountry}`;
+
+        }
+
+
+        if (reviewSideReceiveFlag) {
+
+            reviewSideReceiveFlag.textContent =
+                data.receiveFlag;
+
+        }
+
+
+        if (reviewSideBeneficiaryAvatar) {
+
+            reviewSideBeneficiaryAvatar.textContent =
+                beneficiary
+                    ? String(
+                        beneficiary.name || "?"
+                    )
+                    .trim()
+                    .charAt(0)
+                    .toUpperCase()
+                    : "?";
+
+        }
+
+
+        if (reviewSideBeneficiary) {
+
+            reviewSideBeneficiary.textContent =
+                beneficiary?.name ||
+                "No beneficiary";
+
+        }
+
+
+        if (reviewSideBank) {
+
+            reviewSideBank.textContent =
+                beneficiary
+                    ? `${beneficiary.bank || "Bank"} · ${maskAccount(
+                        beneficiary.account
+                    )}`
+                    : "—";
+
+        }
+
+
+        if (reviewSideTotal) {
+
+            reviewSideTotal.textContent =
+                formatMoney(
+                    data.totalPayable,
+                    data.sendCurrency
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       POPULATE STEP 3 CONFIRMATION
+    ===================================================== */
+
+    function populateConfirmation(data) {
+
+        if (!data) {
+            return;
+        }
+
+
+        const beneficiary =
+            data.beneficiary;
+
+
+        // -------------------------------------------------
+        // Total
+        // -------------------------------------------------
+
+        if (confirmTotal) {
+
+            confirmTotal.textContent =
+                formatMoney(
+                    data.totalPayable,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        // -------------------------------------------------
+        // Route
+        // -------------------------------------------------
+
+        if (confirmRoute) {
+
+            confirmRoute.textContent =
+                `${data.sendCountry} → ${data.receiveCountry}`;
+
+        }
+
+
+        // -------------------------------------------------
+        // Beneficiary
+        // -------------------------------------------------
+
+        if (confirmBeneficiaryAvatar) {
+
+            confirmBeneficiaryAvatar.textContent =
+                beneficiary
+                    ? String(
+                        beneficiary.name || "?"
+                    )
+                    .trim()
+                    .charAt(0)
+                    .toUpperCase()
+                    : "?";
+
+        }
+
+
+        if (confirmBeneficiaryName) {
+
+            confirmBeneficiaryName.textContent =
+                beneficiary?.name ||
+                "Beneficiary";
+
+        }
+
+
+        if (confirmBeneficiaryBank) {
+
+            confirmBeneficiaryBank.textContent =
+                beneficiary
+                    ? `${beneficiary.bank || "Bank"} · ${maskAccount(
+                        beneficiary.account
+                    )}`
+                    : "—";
+
+        }
+
+
+        // -------------------------------------------------
+        // Values
+        // -------------------------------------------------
+
+        if (confirmSendAmount) {
+
+            confirmSendAmount.textContent =
+                formatMoney(
+                    data.amount,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        if (confirmReceiveAmount) {
+
+            confirmReceiveAmount.textContent =
+                formatMoney(
+                    data.receivedAmount,
+                    data.receiveCurrency
+                );
+
+        }
+
+
+        if (confirmRate) {
+
+            confirmRate.textContent =
+                `1 ${data.sendCurrency} = ${Number(
+                    data.rate
+                ).toLocaleString(
+                    "en-IN",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
+                    }
+                )} ${data.receiveCurrency}`;
+
+        }
+
+
+        if (confirmFee) {
+
+            confirmFee.textContent =
+                formatMoney(
+                    data.fee,
+                    data.sendCurrency
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CONTINUE TO REVIEW
+    ===================================================== */
+
+    if (sendMoneyContinue) {
+
+        sendMoneyContinue.addEventListener(
+            "click",
+            () => {
+
+                const config =
+                    getConfig();
+
+
+                const amount =
+                    parseFloat(
+                        sendMoneyAmount?.value || "0"
+                    );
+
+
+                // -------------------------------------------------
+                // Validate amount
+                // -------------------------------------------------
+
+                if (
+                    !Number.isFinite(amount) ||
+                    amount < 100
+                ) {
+
+                    alert(
+                        `Please enter a valid amount of at least 100 ${config.sendCurrency}.`
+                    );
+
+                    sendMoneyAmount?.focus();
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Validate beneficiary
+                // -------------------------------------------------
+
+                if (!selectedBeneficiary) {
+
+                    alert(
+                        `Please select a ${config.receiveCountry} beneficiary before continuing.`
+                    );
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Validate rate
+                // -------------------------------------------------
+
+                if (
+                    currentRate === null ||
+                    !Number.isFinite(currentRate)
+                ) {
+
+                    alert(
+                        "The exchange rate is currently unavailable. Please try again."
+                    );
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Build review data
+                // -------------------------------------------------
+
+                currentReviewData =
+                    buildReviewData();
+
+
+                // -------------------------------------------------
+                // Save to session storage
+                // -------------------------------------------------
+
+                try {
+
+                    sessionStorage.setItem(
+                        "oigr_transfer_review",
+                        JSON.stringify(
+                            currentReviewData
+                        )
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Unable to save transfer review data:",
+                        error
+                    );
+
+                }
+
+
+                // -------------------------------------------------
+                // Populate Step 2
+                // -------------------------------------------------
+
+                populateReview(
+                    currentReviewData
+                );
+
+
+                // -------------------------------------------------
+                // Open Step 2
+                // -------------------------------------------------
+
+                showStep2();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       BACK TO DETAILS
+    ===================================================== */
+
+    if (backToDetailsButton) {
+
+        backToDetailsButton.addEventListener(
+            "click",
+            () => {
+
+                showStep1();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       PROCEED TO CONFIRM
+    ===================================================== */
+
+    if (proceedToConfirmButton) {
+
+        proceedToConfirmButton.addEventListener(
+            "click",
+            () => {
+
+                if (!currentReviewData) {
+
+                    try {
+
+                        const stored =
+                            sessionStorage.getItem(
+                                "oigr_transfer_review"
+                            );
+
+
+                        if (stored) {
+
+                            currentReviewData =
+                                JSON.parse(stored);
+
+                        }
+
+                    } catch (error) {
+
+                        currentReviewData =
+                            null;
+
+                    }
+
+                }
+
+
+                if (!currentReviewData) {
+
+                    alert(
+                        "Transfer review information is missing. Please return to the transfer details."
+                    );
+
+                    showStep1();
+
+                    return;
+
+                }
+
+
+                populateConfirmation(
+                    currentReviewData
+                );
+
+
+                // Reset checkbox every time Step 3 opens
+
+                if (confirmTransferCheckbox) {
+
+                    confirmTransferCheckbox.checked =
+                        false;
+
+                }
+
+
+                if (confirmTransferButton) {
+
+                    confirmTransferButton.disabled =
+                        true;
+
+                }
+
+
+                clearConfirmError();
+
+                showStep3();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       BACK TO REVIEW
+    ===================================================== */
+
+    if (backToReviewButton) {
+
+        backToReviewButton.addEventListener(
+            "click",
+            () => {
+
+                showStep2();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CONFIRMATION CHECKBOX
+    ===================================================== */
+
+    if (confirmTransferCheckbox) {
+
+        confirmTransferCheckbox.addEventListener(
+            "change",
+            () => {
+
+                if (confirmTransferButton) {
+
+                    confirmTransferButton.disabled =
+                        !confirmTransferCheckbox.checked;
+
+                }
+
+
+                if (confirmTransferCheckbox.checked) {
+
+                    clearConfirmError();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CONFIRM TRANSFER
+    ===================================================== */
+
+    if (confirmTransferButton) {
+
+        confirmTransferButton.addEventListener(
+            "click",
+            () => {
+
+                // -------------------------------------------------
+                // Validate checkbox
+                // -------------------------------------------------
+
+                if (
+                    !confirmTransferCheckbox ||
+                    !confirmTransferCheckbox.checked
+                ) {
+
+                    showConfirmError(
+                        "Please confirm that the transfer details are correct before proceeding."
+                    );
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Validate review data
+                // -------------------------------------------------
+
+                if (!currentReviewData) {
+
+                    showConfirmError(
+                        "Transfer information is unavailable. Please return to the review step."
+                    );
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Generate prototype transaction reference
+                // -------------------------------------------------
+
+                const transactionId =
+                    generateTransactionId();
+
+
+                // -------------------------------------------------
+                // Populate success screen
+                // -------------------------------------------------
+
+                populateSuccess(
+                    currentReviewData,
+                    transactionId
+                );
+
+
+                // -------------------------------------------------
+                // Clear temporary confirmation state
+                // -------------------------------------------------
+
+                try {
+
+                    sessionStorage.removeItem(
+                        "oigr_transfer_review"
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Unable to clear transfer review data:",
+                        error
+                    );
+
+                }
+
+
+                // -------------------------------------------------
+                // Show success
+                // -------------------------------------------------
+
+                showSuccess();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CONFIRM ERROR
+    ===================================================== */
+
+    function showConfirmError(message) {
+
+        if (!confirmError) {
+            return;
+        }
+
+
+        confirmError.textContent =
+            message;
+
+
+        confirmError.hidden =
+            false;
+
+    }
+
+
+    function clearConfirmError() {
+
+        if (!confirmError) {
+            return;
+        }
+
+
+        confirmError.textContent =
+            "";
+
+
+        confirmError.hidden =
+            true;
+
+    }
+
+
+    /* =====================================================
+       GENERATE TRANSACTION ID
+    ===================================================== */
+
+    function generateTransactionId() {
+
+        const now =
+            new Date();
+
+
+        const year =
+            now.getFullYear();
+
+
+        const month =
+            String(
+                now.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const day =
+            String(
+                now.getDate()
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const random =
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            );
+
+
+        return `OIGR-${year}${month}${day}-${random}`;
+
+    }
+
+
+    /* =====================================================
+       POPULATE SUCCESS SCREEN
+    ===================================================== */
+
+    function populateSuccess(
+        data,
+        transactionId
+    ) {
+
+        if (!data) {
+            return;
+        }
+
+
+        if (successTransactionId) {
+
+            successTransactionId.textContent =
+                transactionId;
+
+        }
+
+
+        if (successSendFlag) {
+
+            successSendFlag.textContent =
+                data.sendFlag;
+
+        }
+
+
+        if (successSendCountry) {
+
+            successSendCountry.textContent =
+                data.sendCountry;
+
+        }
+
+
+        if (successSendCurrency) {
+
+            successSendCurrency.textContent =
+                data.sendCurrency;
+
+        }
+
+
+        if (successReceiveFlag) {
+
+            successReceiveFlag.textContent =
+                data.receiveFlag;
+
+        }
+
+
+        if (successReceiveCountry) {
+
+            successReceiveCountry.textContent =
+                data.receiveCountry;
+
+        }
+
+
+        if (successReceiveCurrency) {
+
+            successReceiveCurrency.textContent =
+                data.receiveCurrency;
+
+        }
+
+
+        if (successSendAmount) {
+
+            successSendAmount.textContent =
+                formatMoney(
+                    data.amount,
+                    data.sendCurrency
+                );
+
+        }
+
+
+        if (successReceiveAmount) {
+
+            successReceiveAmount.textContent =
+                formatMoney(
+                    data.receivedAmount,
+                    data.receiveCurrency
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       START NEW TRANSFER
+    ===================================================== */
+
+    if (newTransferButton) {
+
+        newTransferButton.addEventListener(
+            "click",
+            () => {
+
+                // Reset amount
+
+                if (sendMoneyAmount) {
+
+                    sendMoneyAmount.value =
+                        "";
+
+                }
+
+
+                // Reset beneficiary
+
+                selectedBeneficiary =
+                    null;
+
+
+                if (beneficiarySelector) {
+
+                    const options =
+                        beneficiarySelector.querySelectorAll(
+                            ".beneficiary-option"
+                        );
+
+
+                    options.forEach(option => {
+
+                        option.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+                }
+
+
+                // Reset confirmation
+
+                if (confirmTransferCheckbox) {
+
+                    confirmTransferCheckbox.checked =
+                        false;
+
+                }
+
+
+                if (confirmTransferButton) {
+
+                    confirmTransferButton.disabled =
+                        true;
+
+                }
+
+
+                currentReviewData =
+                    null;
+
+
+                try {
+
+                    sessionStorage.removeItem(
+                        "oigr_transfer_review"
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Unable to clear session storage:",
+                        error
+                    );
+
+                }
+
+
+                updateOverviewBeneficiary();
+
+                calculateTransfer();
+
+                showStep1();
+
+            }
+        );
 
     }
 
@@ -1824,13 +3420,9 @@ document.addEventListener("DOMContentLoaded", () => {
             newDirection;
 
 
-        const config =
-            getConfig();
-
-
-        /* ================================================
-           RATE
-        ================================================= */
+        // -------------------------------------------------
+        // Set initial rate
+        // -------------------------------------------------
 
         if (direction === "INR_NPR") {
 
@@ -1845,9 +3437,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* ================================================
-           UPDATE EVERYTHING
-        ================================================= */
+        // -------------------------------------------------
+        // Update UI
+        // -------------------------------------------------
 
         updateTransferDetails();
 
@@ -1866,39 +3458,28 @@ document.addEventListener("DOMContentLoaded", () => {
         updateModalForDirection();
 
 
-        /* ================================================
-           BENEFICIARIES
-        ================================================= */
+        // -------------------------------------------------
+        // Beneficiaries
+        // -------------------------------------------------
 
         filterBeneficiaries();
 
 
-        /* ================================================
-           CALCULATE
-        ================================================= */
+        // -------------------------------------------------
+        // Calculate
+        // -------------------------------------------------
 
         calculateTransfer();
 
 
-        /* ================================================
-           REFRESH LIVE RATE
-        ================================================= */
+        // -------------------------------------------------
+        // Refresh live rate
+        // -------------------------------------------------
 
         fetchLiveRate();
 
 
-        /* ================================================
-           ICONS
-        ================================================= */
-
-        if (
-            typeof lucide !== "undefined" &&
-            lucide.createIcons
-        ) {
-
-            lucide.createIcons();
-
-        }
+        refreshIcons();
 
     }
 
@@ -1940,7 +3521,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       TWO-WAY SWITCH BUTTON
+       TWO-WAY SWITCH
     ===================================================== */
 
     if (directionSwitch) {
@@ -1990,7 +3571,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                selectBeneficiary(option);
+                selectBeneficiary(
+                    option
+                );
 
             }
         );
@@ -2009,6 +3592,7 @@ document.addEventListener("DOMContentLoaded", () => {
             calculateTransfer
         );
 
+
         sendMoneyAmount.addEventListener(
             "change",
             calculateTransfer
@@ -2018,150 +3602,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CONTINUE TO REVIEW
+       LUCIDE ICON REFRESH
     ===================================================== */
 
-    if (sendMoneyContinue) {
+    function refreshIcons() {
 
-        sendMoneyContinue.addEventListener(
-            "click",
-            () => {
+        if (
+            typeof lucide !== "undefined" &&
+            lucide.createIcons
+        ) {
 
-                const config =
-                    getConfig();
+            lucide.createIcons();
 
-
-                const amount =
-                    parseFloat(
-                        sendMoneyAmount?.value || "0"
-                    );
-
-
-                /* =========================================
-                   VALIDATE AMOUNT
-                ========================================= */
-
-                if (
-                    !Number.isFinite(amount) ||
-                    amount < 100
-                ) {
-
-                    alert(
-                        `Please enter a valid amount of at least 100 ${config.sendCurrency}.`
-                    );
-
-                    sendMoneyAmount?.focus();
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   VALIDATE BENEFICIARY
-                ========================================= */
-
-                if (!selectedBeneficiary) {
-
-                    alert(
-                        `Please select a ${config.receiveCountry} beneficiary before continuing.`
-                    );
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   VALIDATE RATE
-                ========================================= */
-
-                if (
-                    currentRate === null ||
-                    !Number.isFinite(currentRate)
-                ) {
-
-                    alert(
-                        "The exchange rate is currently unavailable. Please try again."
-                    );
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   PREPARE REVIEW DATA
-                ========================================= */
-
-                const receivedAmount =
-                    amount * currentRate;
-
-
-                const totalPayable =
-                    amount + config.fee;
-
-
-                const reviewData = {
-
-                    direction:
-                        direction,
-
-                    sendCountry:
-                        config.sendCountry,
-
-                    sendCurrency:
-                        config.sendCurrency,
-
-                    receiveCountry:
-                        config.receiveCountry,
-
-                    receiveCurrency:
-                        config.receiveCurrency,
-
-                    amount:
-                        amount,
-
-                    receivedAmount:
-                        receivedAmount,
-
-                    fee:
-                        config.fee,
-
-                    totalPayable:
-                        totalPayable,
-
-                    rate:
-                        currentRate,
-
-                    beneficiary:
-                        selectedBeneficiary,
-
-                    createdAt:
-                        new Date().toISOString()
-
-                };
-
-
-                sessionStorage.setItem(
-                    "oigr_transfer_review",
-                    JSON.stringify(
-                        reviewData
-                    )
-                );
-
-
-                /*
-                 * Review page will be connected
-                 * in the next development stage.
-                 */
-
-                alert(
-                    "Transfer details saved. Review screen will be connected next."
-                );
-
-            }
-        );
+        }
 
     }
 
@@ -2173,7 +3626,10 @@ document.addEventListener("DOMContentLoaded", () => {
     loadStoredBeneficiaries();
 
 
-    // Attach click listeners to server-rendered beneficiaries
+    // -----------------------------------------------------
+    // Attach listeners to server-rendered beneficiaries
+    // -----------------------------------------------------
+
     if (beneficiarySelector) {
 
         const options =
@@ -2186,7 +3642,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             option.addEventListener(
                 "click",
-                () => selectBeneficiary(option)
+                () => {
+
+                    selectBeneficiary(
+                        option
+                    );
+
+                }
             );
 
         });
@@ -2194,20 +3656,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Set initial direction
+    // -----------------------------------------------------
+    // Initial direction
+    // -----------------------------------------------------
+
     setDirection(
         "INR_NPR"
     );
 
 
-    // Make sure icons are rendered
-    if (
-        typeof lucide !== "undefined" &&
-        lucide.createIcons
-    ) {
+    // -----------------------------------------------------
+    // Initial panel
+    // -----------------------------------------------------
 
-        lucide.createIcons();
+    showStep1();
 
-    }
+
+    // -----------------------------------------------------
+    // Render icons
+    // -----------------------------------------------------
+
+    refreshIcons();
 
 });

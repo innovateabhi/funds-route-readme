@@ -1,0 +1,827 @@
+{% block page_heading %}
+    Profile
+{% endblock %}
+{% extends "customer/base-customer.html" %}
+
+
+{% block title %}
+My Profile
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/profile.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="profile-page">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="profile-page-header">
+
+        <div class="profile-page-header-content">
+
+            <span class="profile-page-kicker">
+                ACCOUNT
+            </span>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage and view your personal account information,
+                verification details and banking information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PROFILE SUMMARY
+    ====================================================== -->
+
+    <section class="profile-summary-card">
+
+        <div class="profile-summary-avatar">
+
+            {% if user.full_name %}
+                {{ user.full_name[0]|upper }}
+            {% else %}
+                {{ user.username[0]|upper }}
+            {% endif %}
+
+        </div>
+
+
+        <div class="profile-summary-content">
+
+            <h2>
+                {{ user.full_name or user.username }}
+            </h2>
+
+            <p class="profile-username">
+                @{{ user.username }}
+            </p>
+
+
+            <div class="profile-account-status">
+
+                {% if user.status == "verified" %}
+
+                    <span class="profile-status verified">
+                        <span class="profile-status-dot"></span>
+                        Verified Account
+                    </span>
+
+                {% elif user.status == "kyc_pending" %}
+
+                    <span class="profile-status pending">
+                        <span class="profile-status-dot"></span>
+                        KYC Pending
+                    </span>
+
+                {% elif user.status == "rejected" %}
+
+                    <span class="profile-status rejected">
+                        <span class="profile-status-dot"></span>
+                        Account Rejected
+                    </span>
+
+                {% elif user.status == "suspended" %}
+
+                    <span class="profile-status rejected">
+                        <span class="profile-status-dot"></span>
+                        Account Suspended
+                    </span>
+
+                {% else %}
+
+                    <span class="profile-status pending">
+                        <span class="profile-status-dot"></span>
+                        {{ user.status|replace("_", " ")|title }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PERSONAL INFORMATION
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                01
+            </div>
+
+            <div>
+
+                <h2>
+                    Personal Information
+                </h2>
+
+                <p>
+                    Your basic personal details
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Full Name
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.full_name or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Username
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.username }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Date of Birth
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.date_of_birth %}
+                        {{ user.date_of_birth.strftime('%d %b %Y') }}
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Gender
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.gender %}
+                        {{ user.gender|replace("_", " ")|title }}
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Nationality
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.nationality or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Occupation
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.occupation or "Not provided" }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT INFORMATION
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                02
+            </div>
+
+            <div>
+
+                <h2>
+                    Contact Information
+                </h2>
+
+                <p>
+                    Your registered contact details
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Email Address
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.email or "Not provided" }}
+                </span>
+
+
+                {% if user.email_verified %}
+
+                    <span class="profile-verification verified">
+                        ✓ Email Verified
+                    </span>
+
+                {% else %}
+
+                    <span class="profile-verification pending">
+                        Email Not Verified
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Phone Number
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.phone or "Not provided" }}
+                </span>
+
+
+                {% if user.phone_verified %}
+
+                    <span class="profile-verification verified">
+                        ✓ Phone Verified
+                    </span>
+
+                {% else %}
+
+                    <span class="profile-verification pending">
+                        Phone Not Verified
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ADDRESS
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                03
+            </div>
+
+            <div>
+
+                <h2>
+                    Address
+                </h2>
+
+                <p>
+                    Your registered residential address
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field profile-field-full">
+
+                <span class="profile-field-label">
+                    Address
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.address_line or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    City
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.city or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    State
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.state or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Country
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.country or "Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Postal Code
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.postal_code or "Not provided" }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         KYC INFORMATION
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                04
+            </div>
+
+            <div>
+
+                <h2>
+                    KYC Verification
+                </h2>
+
+                <p>
+                    Identity verification information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Document Type
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.document_type %}
+                        {{ user.document_type|replace("_", " ")|title }}
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Document Number
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.document_number %}
+
+                        ••••••••{{ user.document_number[-4:] }}
+
+                    {% else %}
+
+                        Not provided
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Verification Status
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.kyc_status == "verified" %}
+
+                        <span class="profile-inline-status verified">
+                            ✓ Verified
+                        </span>
+
+                    {% elif user.kyc_status == "rejected" %}
+
+                        <span class="profile-inline-status rejected">
+                            Rejected
+                        </span>
+
+                    {% elif user.kyc_status %}
+
+                        <span class="profile-inline-status pending">
+                            {{ user.kyc_status|replace("_", " ")|title }}
+                        </span>
+
+                    {% else %}
+
+                        Not Available
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Verified On
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.verified_at %}
+                        {{ user.verified_at.strftime('%d %b %Y, %I:%M %p') }}
+                    {% else %}
+                        Not available
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         BANK ACCOUNT
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                05
+            </div>
+
+            <div>
+
+                <h2>
+                    Bank Account
+                </h2>
+
+                <p>
+                    Your registered receiving bank account
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Account Holder
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.account_holder_name or "Not provided" }}
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Bank Name
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.bank_name or "Not provided" }}
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Account Type
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.account_type %}
+                        {{ user.account_type|title }}
+                    {% else %}
+                        Not provided
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Account Number
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.account_number %}
+
+                        ••••••••{{ user.account_number[-4:] }}
+
+                    {% else %}
+
+                        Not provided
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    IFSC Code
+                </span>
+
+                <span class="profile-field-value">
+                    {{ user.ifsc_code or "Not provided" }}
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Bank Verification
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.bank_status == "verified" %}
+
+                        <span class="profile-inline-status verified">
+                            ✓ Verified
+                        </span>
+
+                    {% elif user.bank_status == "rejected" %}
+
+                        <span class="profile-inline-status rejected">
+                            Rejected
+                        </span>
+
+                    {% elif user.bank_status %}
+
+                        <span class="profile-inline-status pending">
+                            {{ user.bank_status|title }}
+                        </span>
+
+                    {% else %}
+
+                        Not Available
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACCOUNT INFORMATION
+    ====================================================== -->
+
+    <section class="profile-section">
+
+        <div class="profile-section-header">
+
+            <div class="profile-section-number">
+                06
+            </div>
+
+            <div>
+
+                <h2>
+                    Account Information
+                </h2>
+
+                <p>
+                    General information about your account
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-fields-grid">
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Account Status
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.status == "verified" %}
+
+                        <span class="profile-inline-status verified">
+                            ✓ Verified
+                        </span>
+
+                    {% else %}
+
+                        {{ user.status|replace("_", " ")|title }}
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="profile-field">
+
+                <span class="profile-field-label">
+                    Member Since
+                </span>
+
+                <span class="profile-field-value">
+
+                    {% if user.created_at %}
+                        {{ user.created_at.strftime('%d %b %Y') }}
+                    {% else %}
+                        Not available
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

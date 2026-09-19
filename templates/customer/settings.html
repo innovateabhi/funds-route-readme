@@ -1,0 +1,746 @@
+{% extends "customer/base-customer.html" %}
+
+
+{% block title %}
+    Settings
+{% endblock %}
+
+
+{% block page_heading %}
+    Settings
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   SETTINGS PAGE
+========================================================= */
+
+.settings-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.settings-page .settings-header {
+    margin-bottom: 24px;
+}
+
+.settings-page .settings-header .page-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.settings-page .settings-header h1 {
+    margin: 0 0 6px;
+    color: var(--text-dark);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.settings-page .settings-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   SETTINGS CARD
+========================= */
+
+.settings-page .settings-card {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 22px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.settings-page .settings-card-header {
+    margin-bottom: 18px;
+}
+
+.settings-page .settings-card-kicker {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.settings-page .settings-card-header h2 {
+    margin: 0 0 5px;
+    color: var(--text-dark);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.settings-page .settings-card-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SETTINGS ROW
+========================= */
+
+.settings-page .settings-row {
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+}
+
+.settings-page .settings-label {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.settings-page .settings-value {
+    display: block;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.settings-page .settings-description {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   ACTION ROW
+========================= */
+
+.settings-page .settings-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.settings-page .settings-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 130px;
+    padding: 9px 16px;
+
+    border: 1px solid var(--primary);
+    border-radius: 7px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.settings-page .settings-button:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.settings-page .settings-button-danger {
+    background: transparent;
+    border-color: #d64545;
+    color: #d64545;
+}
+
+.settings-page .settings-button-danger:hover {
+    background: #d64545;
+    border-color: #d64545;
+    color: var(--white);
+}
+
+.settings-page .settings-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   TOGGLE ROW
+========================= */
+
+.settings-page .settings-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+    padding: 14px 0;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* =========================
+   TOGGLE SWITCH
+========================= */
+
+.settings-page .settings-switch {
+    position: relative;
+    display: inline-block;
+
+    width: 40px;
+    height: 22px;
+
+    flex-shrink: 0;
+}
+
+.settings-page .settings-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-page .settings-slider {
+    position: absolute;
+    inset: 0;
+
+    background: #cfd6df;
+    border-radius: 20px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.settings-page .settings-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 16px;
+    height: 16px;
+
+    left: 3px;
+    top: 3px;
+
+    background: var(--white);
+    border-radius: 50%;
+
+    transition: 0.2s ease;
+}
+
+.settings-page .settings-switch input:checked + .settings-slider {
+    background: var(--primary);
+}
+
+.settings-page .settings-switch input:checked + .settings-slider::before {
+    transform: translateX(18px);
+}
+
+
+/* =========================
+   FORM ROW
+========================= */
+
+.settings-page .settings-form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+}
+
+.settings-page .settings-form-row label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.settings-page .settings-form-row select {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--white);
+    color: var(--text-dark);
+
+    font-size: 12px;
+
+    outline: none;
+    box-sizing: border-box;
+}
+
+.settings-page .settings-form-row select:focus {
+    border-color: var(--primary);
+}
+
+
+/* =========================
+   DANGER ZONE
+========================= */
+
+.settings-page .settings-danger-card {
+    border-color: #e8b4b4;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .settings-page .settings-card {
+        padding: 18px;
+    }
+
+    .settings-page .settings-action-row,
+    .settings-page .settings-toggle-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .settings-page .settings-button {
+        width: 100%;
+    }
+
+    .settings-page .settings-form-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+
+<section class="settings-page">
+
+    <div class="settings-header">
+
+        <span class="page-kicker">
+            ACCOUNT SETTINGS
+        </span>
+
+        <h1>
+            Manage your account
+        </h1>
+
+        <p>
+            Manage your security, preferences and notification settings.
+        </p>
+
+    </div>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    ACCOUNT
+                </span>
+
+                <h2>
+                    Account Information
+                </h2>
+
+                <p>
+                    Your basic account information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-row">
+
+            <span class="settings-label">
+                Username
+            </span>
+
+            <span class="settings-value">
+                {{ customer.username }}
+            </span>
+
+        </div>
+
+
+        <div class="settings-row">
+
+            <span class="settings-label">
+                Account Status
+            </span>
+
+            <span class="settings-value">
+                {{ "Verified" if customer.verified else "Pending" }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    SECURITY
+                </span>
+
+                <h2>
+                    Password & Security
+                </h2>
+
+                <p>
+                    Keep your account secure.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-action-row">
+
+            <div>
+
+                <span class="settings-label">
+                    Password
+                </span>
+
+                <span class="settings-description">
+                    Change your account password.
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="settings-button"
+            >
+                Change Password
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    NOTIFICATIONS
+                </span>
+
+                <h2>
+                    Notification Preferences
+                </h2>
+
+                <p>
+                    Choose how you want to receive updates.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <span class="settings-label">
+                    Transaction Notifications
+                </span>
+
+                <span class="settings-description">
+                    Receive updates about your remittance transactions.
+                </span>
+
+            </div>
+
+
+            <label class="settings-switch">
+
+                <input
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <span class="settings-label">
+                    Email Notifications
+                </span>
+
+                <span class="settings-description">
+                    Receive important account updates by email.
+                </span>
+
+            </div>
+
+
+            <label class="settings-switch">
+
+                <input
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- APPLICATION PREFERENCES -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    PREFERENCES
+                </span>
+
+                <h2>
+                    Application Preferences
+                </h2>
+
+                <p>
+                    Customize your portal experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-form-row">
+
+            <div>
+
+                <label for="currency">
+                    Preferred Currency
+                </label>
+
+                <select id="currency">
+
+                    <option value="INR">
+                        INR — Indian Rupee
+                    </option>
+
+                    <option value="NPR">
+                        NPR — Nepalese Rupee
+                    </option>
+
+                    <option value="USD">
+                        USD — US Dollar
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label for="language">
+                    Language
+                </label>
+
+                <select id="language">
+
+                    <option value="en">
+                        English
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SESSION -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    SESSION
+                </span>
+
+                <h2>
+                    Account Session
+                </h2>
+
+                <p>
+                    Sign out from your current session.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-action-row">
+
+            <div>
+
+                <span class="settings-label">
+                    Sign Out
+                </span>
+
+                <span class="settings-description">
+                    End your current customer portal session.
+                </span>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="settings-button settings-button-danger"
+            >
+                Sign Out
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- DANGER ZONE -->
+
+    <div class="settings-card settings-danger-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <span class="settings-card-kicker">
+                    DANGER ZONE
+                </span>
+
+                <h2>
+                    Account Deactivation
+                </h2>
+
+                <p>
+                    Account deactivation will be handled through customer support.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-action-row">
+
+            <div>
+
+                <span class="settings-label">
+                    Deactivate Account
+                </span>
+
+                <span class="settings-description">
+                    Contact support if you want to deactivate your account.
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="settings-button settings-button-danger"
+                disabled
+            >
+                Contact Support
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

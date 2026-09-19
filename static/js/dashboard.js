@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded", function () {
+
+   
 
     // =========================================================
     // QUICK TRANSFER ELEMENTS
@@ -888,3 +891,4 @@ document.addEventListener("DOMContentLoaded", () => {
     loadRates();
 
 });
+

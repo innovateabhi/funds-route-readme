@@ -1,0 +1,567 @@
+{% extends "customer/base-customer.html" %}
+
+
+{% block title %}
+    Notifications
+{% endblock %}
+
+
+{% block page_heading %}
+    Notifications
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   NOTIFICATIONS PAGE
+========================================================= */
+
+.notifications-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.notifications-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+.notifications-header h2 {
+    margin: 0 0 6px;
+
+    color: var(--text-primary);
+
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.notifications-header p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.notification-count {
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(8, 108, 255, 0.07);
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.notifications-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.notifications-toolbar-title {
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.mark-read-button {
+    padding: 7px 11px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 7px;
+
+    background: var(--card-bg);
+
+    color: var(--text-secondary);
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.mark-read-button:hover {
+    color: var(--primary);
+
+    border-color: rgba(8, 108, 255, 0.25);
+
+    background: rgba(8, 108, 255, 0.03);
+}
+
+
+/* =========================================================
+   NOTIFICATION LIST
+========================================================= */
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 16px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 11px;
+
+    background: var(--card-bg);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.notification-item:hover {
+    transform: translateY(-1px);
+
+    border-color: rgba(8, 108, 255, 0.18);
+}
+
+.notification-item.unread {
+    border-color: rgba(8, 108, 255, 0.13);
+
+    background:
+        rgba(8, 108, 255, 0.025);
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: rgba(8, 108, 255, 0.08);
+
+    color: var(--primary);
+
+    font-size: 16px;
+}
+
+.notification-item[data-type="security"]
+.notification-icon {
+    background: rgba(245, 158, 11, 0.09);
+}
+
+.notification-item[data-type="account"]
+.notification-icon {
+    background: rgba(34, 197, 94, 0.09);
+}
+
+.notification-item[data-type="rate"]
+.notification-icon {
+    background: rgba(37, 164, 255, 0.09);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.notification-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.notification-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 4px;
+}
+
+.notification-title {
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.notification-time {
+    flex-shrink: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+.notification-message {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   UNREAD DOT
+========================================================= */
+
+.unread-dot {
+    flex-shrink: 0;
+
+    width: 7px;
+    height: 7px;
+
+    margin-top: 6px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.notifications-empty {
+    padding: 45px 20px;
+
+    border: 1px dashed var(--border-color);
+
+    border-radius: 12px;
+
+    background: var(--card-bg);
+
+    text-align: center;
+}
+
+.notifications-empty-icon {
+    margin-bottom: 10px;
+
+    font-size: 28px;
+}
+
+.notifications-empty h3 {
+    margin: 0 0 5px;
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+}
+
+.notifications-empty p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .notifications-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        margin-bottom: 20px;
+    }
+
+    .notifications-header h2 {
+        font-size: 22px;
+    }
+
+    .notification-item {
+        padding: 13px;
+    }
+
+    .notification-top {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 3px;
+    }
+
+    .notification-time {
+        font-size: 8px;
+    }
+
+    .notification-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+
+<section class="notifications-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="notifications-header">
+
+        <div>
+
+            <h2>
+                Notifications
+            </h2>
+
+            <p>
+                Stay updated with your account,
+                transfers and exchange rates.
+            </p>
+
+        </div>
+
+
+        <div class="notification-count">
+
+            {{ unread_count }}
+            {% if unread_count == 1 %}
+                Unread
+            {% else %}
+                Unread
+            {% endif %}
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         TOOLBAR
+    ====================================================== -->
+
+    <div class="notifications-toolbar">
+
+        <div class="notifications-toolbar-title">
+            Recent Notifications
+        </div>
+
+        <button
+            type="button"
+            class="mark-read-button"
+            onclick="markAllRead()"
+        >
+            Mark all as read
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NOTIFICATION LIST
+    ====================================================== -->
+
+    {% if notifications %}
+
+        <div class="notification-list">
+
+            {% for notification in notifications %}
+
+                <article
+                    class="notification-item
+                    {% if not notification.read %}unread{% endif %}"
+                    data-type="{{ notification.type }}"
+                >
+
+
+                    <!-- Icon -->
+
+                    <div class="notification-icon">
+
+                        {% if notification.type == "transaction" %}
+                            ↗
+                        {% elif notification.type == "security" %}
+                            ✓
+                        {% elif notification.type == "rate" %}
+                            ⇄
+                        {% elif notification.type == "account" %}
+                            ✓
+                        {% else %}
+                            •
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- Content -->
+
+                    <div class="notification-content">
+
+                        <div class="notification-top">
+
+                            <div class="notification-title">
+                                {{ notification.title }}
+                            </div>
+
+                            <div class="notification-time">
+                                {{ notification.time }}
+                            </div>
+
+                        </div>
+
+                        <p class="notification-message">
+                            {{ notification.message }}
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Unread -->
+
+                    {% if not notification.read %}
+
+                        <span
+                            class="unread-dot"
+                            aria-label="Unread"
+                        ></span>
+
+                    {% endif %}
+
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="notifications-empty">
+
+            <div class="notifications-empty-icon">
+                🔔
+            </div>
+
+            <h3>
+                You're all caught up
+            </h3>
+
+            <p>
+                You don't have any notifications right now.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+</section>
+
+
+
+<script>
+
+/* =========================================================
+   MARK ALL AS READ
+========================================================= */
+
+function markAllRead() {
+
+    const notifications =
+        document.querySelectorAll(
+            ".notification-item.unread"
+        );
+
+    notifications.forEach(function (item) {
+
+        item.classList.remove("unread");
+
+        const dot =
+            item.querySelector(".unread-dot");
+
+        if (dot) {
+            dot.remove();
+        }
+
+    });
+
+
+    const count =
+        document.querySelector(
+            ".notification-count"
+        );
+
+    if (count) {
+
+        count.textContent =
+            "0 Unread";
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

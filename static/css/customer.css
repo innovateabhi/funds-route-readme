@@ -331,7 +331,7 @@
 .top-header {
     height: 74px;
 
-    position: sticky;
+    position: relative;
 
     top: 0;
 

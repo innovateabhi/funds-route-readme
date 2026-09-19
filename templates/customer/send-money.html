@@ -488,11 +488,10 @@ Send Money
                      CONTINUE
                 ============================================== -->
 
-           <button
+<button
     type="button"
     class="primary-button full-width"
     id="sendMoneyContinue"
-    onclick="openTransferReview(event)"
 >
     <span>Continue to Review</span>
     <i data-lucide="arrow-right"></i>
@@ -1808,46 +1807,6 @@ Send Money
 <script
     src="{{ url_for('static', filename='js/send-money.js') }}"
 ></script>
-<script>
-function openTransferReview(event) {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
 
-    console.log("Continue to Review clicked");
-
-    const amountInput = document.getElementById("sendMoneyAmount");
-    const beneficiary = document.querySelector(".beneficiary-option.selected, .beneficiary-option.active");
-
-    const amount = parseFloat(amountInput?.value || 0);
-
-    if (!amount || amount < 100) {
-        alert("Please enter an amount of at least ₹100.");
-        return false;
-    }
-
-    if (!beneficiary) {
-        alert("Please select a beneficiary.");
-        return false;
-    }
-
-    const step1 = document.getElementById("sendMoneyStep1");
-    const step2 = document.getElementById("sendMoneyStep2");
-
-    if (!step1 || !step2) {
-        console.error("Review section is missing from send-money.html");
-        alert("Review section is missing. Please update send-money.html.");
-        return false;
-    }
-
-    step1.hidden = true;
-    step2.hidden = false;
-
-    console.log("Review screen opened");
-
-    return false;
-}
-</script>
 
 {% endblock %}

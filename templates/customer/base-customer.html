@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block styles %}
 
 <link
@@ -7,386 +8,283 @@
     href="{{ url_for('static', filename='css/customer.css') }}"
 >
 
+{% block page_css %}
 {% endblock %}
+
+{% endblock %}
+
+
 
 {% block body %}
 
 <div class="app-shell">
 
-```
-<!-- =========================
-     SIDEBAR
-========================== -->
 
-<aside
-    class="sidebar"
-    id="sidebar"
->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-    <div class="sidebar-header">
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
 
-        <a
-            href="{{ url_for('customer.dashboard') }}"
-            class="brand"
-        >
+        <!-- SIDEBAR HEADER -->
 
-            <div class="brand-logo">
-                <span>OI</span>
-            </div>
-
-            <div class="brand-text">
-
-                <strong>
-                    One India
-                </strong>
-
-                <span>
-                    Global Remittance
-                </span>
-
-            </div>
-
-        </a>
-
-        <button
-            class="sidebar-close"
-            id="sidebarClose"
-            aria-label="Close navigation"
-        >
-            <i data-lucide="x"></i>
-        </button>
-
-    </div>
-
-
-    <div class="sidebar-section">
-
-        <span class="sidebar-label">
-            OVERVIEW
-        </span>
-
-        <nav class="sidebar-nav">
+        <div class="sidebar-header">
 
             <a
                 href="{{ url_for('customer.dashboard') }}"
-                class="nav-item active"
+                class="brand"
             >
 
-                <i data-lucide="layout-dashboard"></i>
+                <div class="brand-logo">
+                    <span>FR</span>
+                </div>
 
-                <span>
-                    Dashboard
-                </span>
+                <div class="brand-text">
+
+                    <strong>
+                        FundsRoute
+                    </strong>
+                </div>
 
             </a>
 
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="send"></i>
-
-                <span>
-                    Send Money
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="users"></i>
-
-                <span>
-                    Beneficiaries
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="receipt-text"></i>
-
-                <span>
-                    Transactions
-                </span>
-
-            </a>
-
-        </nav>
-
-    </div>
-
-
-    <div class="sidebar-section">
-
-        <span class="sidebar-label">
-            FINANCE
-        </span>
-
-        <nav class="sidebar-nav">
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="landmark"></i>
-
-                <span>
-                    Exchange Rates
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="bell"></i>
-
-                <span>
-                    Notifications
-                </span>
-
-                <span class="notification-dot">
-                    3
-                </span>
-
-            </a>
-
-        </nav>
-
-    </div>
-
-
-    <div class="sidebar-section">
-
-        <span class="sidebar-label">
-            ACCOUNT
-        </span>
-
-        <nav class="sidebar-nav">
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="user-round"></i>
-
-                <span>
-                    Profile
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                class="nav-item"
-            >
-
-                <i data-lucide="settings"></i>
-
-                <span>
-                    Settings
-                </span>
-
-            </a>
-
-        </nav>
-
-    </div>
-
-
-    <div class="sidebar-bottom">
-
-        <div class="security-card">
-
-            <div class="security-icon">
-
-                <i data-lucide="shield-check"></i>
-
-            </div>
-
-            <div>
-
-                <strong>
-                    Secure transfers
-                </strong>
-
-                <p>
-                    Protected with bank-grade security.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</aside>
-
-
-<div
-    class="sidebar-overlay"
-    id="sidebarOverlay"
-></div>
-
-
-<!-- =========================
-     MAIN
-========================== -->
-
-<main class="main-wrapper">
-
-
-    <!-- HEADER -->
-
-    <header class="top-header">
-
-        <div class="header-left">
 
             <button
-                class="mobile-menu-button"
-                id="mobileMenuButton"
-                aria-label="Open navigation"
+                class="sidebar-close"
+                id="sidebarClose"
+                type="button"
+                aria-label="Close navigation"
             >
 
-                <i data-lucide="menu"></i>
+                <i data-lucide="x"></i>
 
             </button>
 
+        </div>
 
-            <div class="header-title">
 
-                <h1>
 
-                    {% block page_heading %}
+        <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                OVERVIEW
+            </span>
+
+
+            <nav class="sidebar-nav">
+
+
+                <!-- DASHBOARD -->
+
+                <a
+                    href="{{ url_for('customer.dashboard') }}"
+                    class="nav-item {% if request.endpoint == 'customer.dashboard' %}active{% endif %}"
+                >
+
+                    <i data-lucide="layout-dashboard"></i>
+
+                    <span>
                         Dashboard
-                    {% endblock %}
+                    </span>
 
-                </h1>
+                </a>
 
-                <span>
-                    One India Customer Portal
-                </span>
 
-            </div>
+
+                <!-- SEND MONEY -->
+
+                <a
+                    href="{{ url_for('customer.send_money') }}"
+                    class="nav-item"
+                >
+
+                    <i data-lucide="send"></i>
+
+                    <span>
+                        Send Money
+                    </span>
+
+                </a>
+
+
+
+                <!-- BENEFICIARIES -->
+
+                <a
+                    href="{{ url_for('customer.beneficiaries') }}"
+                    class="nav-item"
+                >
+
+                    <i data-lucide="users"></i>
+
+                    <span>
+                        Beneficiaries
+                    </span>
+
+                </a>
+
+
+
+                <!-- TRANSACTIONS -->
+
+                <a
+                    href="{{ url_for('customer.transactions') }}"
+                    class="nav-item"
+                >
+
+                    <i data-lucide="receipt-text"></i>
+
+                    <span>
+                        Transactions
+                    </span>
+
+                </a>
+
+            </nav>
 
         </div>
 
 
-        <div class="header-actions">
+
+        <!-- =================================================
+             FINANCE
+        ================================================== -->
+
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                FINANCE
+            </span>
 
 
-            <button
-                class="icon-button notification-button"
-                aria-label="Notifications"
-            >
-
-                <i data-lucide="bell"></i>
-
-                <span class="notification-indicator"></span>
-
-            </button>
+            <nav class="sidebar-nav">
 
 
-            <div class="profile-menu">
+                <!-- EXCHANGE RATES -->
 
-                <button
-                    class="profile-trigger"
-                    id="profileTrigger"
+                <a
+                    href="{{ url_for('customer.exchange_rates') }}"
+                    class="nav-item"
                 >
 
-                    <div class="profile-avatar">
+                    <i data-lucide="landmark"></i>
 
-                        {% if customer is defined and customer.first_name %}
-                            {{ customer.first_name[0] | upper }}
-                        {% else %}
-                            U
-                        {% endif %}
+                    <span>
+                        Exchange Rates
+                    </span>
 
-                    </div>
+                </a>
 
 
-                    <div class="profile-details">
 
-                        <strong>
+                <!-- NOTIFICATIONS -->
 
-                            {% if customer is defined and customer.name %}
-                                {{ customer.name }}
-                            {% elif customer is defined and customer.first_name %}
-                                {{ customer.first_name }}
-                            {% else %}
-                                Customer
-                            {% endif %}
-
-                        </strong>
-
-                        <span>
-                            Personal Account
-                        </span>
-
-                    </div>
-
-
-                    <i
-                        data-lucide="chevron-down"
-                        class="profile-chevron"
-                    ></i>
-
-                </button>
-
-
-                <div
-                    class="profile-dropdown"
-                    id="profileDropdown"
+                <a
+                    href="{{ url_for('customer.notifications') }}"
+                    class="nav-item"
                 >
 
-                    <a href="#">
+                    <i data-lucide="bell"></i>
 
-                        <i data-lucide="user"></i>
+                    <span>
+                        Notifications
+                    </span>
 
-                        My Profile
+                    <span class="notification-dot">
+                        1
+                    </span>
 
-                    </a>
+                </a>
+
+            </nav>
+
+        </div>
 
 
-                    <a href="#">
 
-                        <i data-lucide="settings"></i>
+        <!-- =================================================
+             ACCOUNT
+        ================================================== -->
 
+        <div class="sidebar-section">
+
+            <span class="sidebar-label">
+                ACCOUNT
+            </span>
+
+
+            <nav class="sidebar-nav">
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="{{ url_for('customer.profile') }}"
+                    class="nav-item {% if request.endpoint == 'customer.profile' %}active{% endif %}"
+                >
+
+                    <i data-lucide="user-round"></i>
+
+                    <span>
+                        Profile
+                    </span>
+
+                </a>
+
+
+
+                <!-- SETTINGS -->
+
+                <a
+                    href="{{ url_for('customer.settings') }}"
+                    class="nav-item"
+                >
+
+                    <i data-lucide="settings"></i>
+
+                    <span>
                         Settings
+                    </span>
 
-                    </a>
+                </a>
+
+            </nav>
+
+        </div>
 
 
-                    <div class="dropdown-divider"></div>
+
+        <!-- =================================================
+             SECURITY CARD
+        ================================================== -->
+
+        <div class="sidebar-bottom">
+
+            <div class="security-card">
+
+                <div class="security-icon">
+
+                    <i data-lucide="shield-check"></i>
+
+                </div>
 
 
-                    <a
-                        href="#"
-                        class="logout-link"
-                    >
+                <div>
 
-                        <i data-lucide="log-out"></i>
+                    <strong>
+                        Secure transfers
+                    </strong>
 
-                        Sign Out
-
-                    </a>
+                    <p>
+                        Protected with bank-grade security.
+                    </p>
 
                 </div>
 
@@ -394,20 +292,250 @@
 
         </div>
 
-    </header>
+    </aside>
 
 
-    <!-- PAGE CONTENT -->
 
-    <section class="page-content">
+    <!-- SIDEBAR OVERLAY -->
 
-        {% block content %}
-        {% endblock %}
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
 
-    </section>
 
-</main>
-```
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-wrapper">
+
+
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+
+            <div class="header-left">
+
+
+                <!-- MOBILE MENU -->
+
+                <button
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    type="button"
+                    aria-label="Open navigation"
+                >
+
+                    <i data-lucide="menu"></i>
+
+                </button>
+
+
+
+                <!-- PAGE TITLE -->
+
+                <div class="header-title">
+
+                    <h1>
+
+                        {% block page_heading %}
+                            Dashboard
+                        {% endblock %}
+
+                    </h1>
+
+
+                    <span>
+                        FundsRoute Customer Portal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 HEADER ACTIONS
+            ================================================== -->
+
+            <div class="header-actions">
+
+
+                <!-- NOTIFICATIONS -->
+
+                <a
+                    href="{{ url_for('customer.notifications') }}"
+                    class="icon-button notification-button"
+                    aria-label="Notifications"
+                >
+
+                    <i data-lucide="bell"></i>
+
+                    <span class="notification-indicator"></span>
+
+                </a>
+
+
+
+                <!-- PROFILE MENU -->
+
+                <div class="profile-menu">
+
+
+                    <button
+                        class="profile-trigger"
+                        id="profileTrigger"
+                        type="button"
+                        aria-expanded="false"
+                    >
+
+                        <!-- AVATAR -->
+
+                        <div class="profile-avatar">
+
+                            {% if customer is defined and customer.first_name %}
+
+                                {{ customer.first_name[0] | upper }}
+
+                            {% else %}
+
+                                U
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- PROFILE DETAILS -->
+
+                        <div class="profile-details">
+
+                            <strong>
+
+                                {% if customer is defined and customer.name %}
+
+                                    {{ customer.name }}
+
+                                {% elif customer is defined and customer.first_name %}
+
+                                    {{ customer.first_name }}
+
+                                {% else %}
+
+                                    Customer
+
+                                {% endif %}
+
+                            </strong>
+
+
+                            <span>
+                                Personal Account
+                            </span>
+
+                        </div>
+
+
+
+                        <i
+                            data-lucide="chevron-down"
+                            class="profile-chevron"
+                        ></i>
+
+                    </button>
+
+
+
+                    <!-- =================================================
+                         PROFILE DROPDOWN
+                    ================================================== -->
+
+                    <div
+                        class="profile-dropdown"
+                        id="profileDropdown"
+                    >
+
+
+                        <!-- MY PROFILE -->
+
+                        <a
+                            href="{{ url_for('customer.profile') }}"
+                        >
+
+                            <i data-lucide="user"></i>
+
+                            <span>
+                                My Profile
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- SETTINGS -->
+
+                        <a href="{{ url_for('customer.settings') }}">
+
+                            <i data-lucide="settings"></i>
+
+                            <span>
+                                Settings
+                            </span>
+
+                        </a>
+
+
+
+                        <div class="dropdown-divider"></div>
+
+
+
+                        <!-- SIGN OUT -->
+
+                        <a
+                            href="{{ url_for('auth.logout') }}"
+                            class="logout-link"
+                        >
+
+                            <i data-lucide="log-out"></i>
+
+                            <span>
+                                Sign Out
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+
+        <section class="page-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </section>
+
+
+    </main>
+
 
 </div>
 
